@@ -1,0 +1,27 @@
+package.json
+  10fb0b8b6a1fe7cc 11-12
+scripts/generate-cert.ts
+  10fb0b8b6a1fe7cc 1-146
+README.md
+  10fb0b8b6a1fe7cc 3-16,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "550c681f02683b8ddb7c37ead0e485ecb24f30f9",
+  "prompts": {
+    "10fb0b8b6a1fe7cc": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "280bb876-d925-4a49-b824-c40d2773e0ef",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 163,
+      "total_deletions": 2,
+      "accepted_lines": 163,
+      "overriden_lines": 0
+    }
+  }
+}
