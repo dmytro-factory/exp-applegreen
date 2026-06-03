@@ -1,4 +1,6 @@
 import { brand } from "@/lib/brand";
+import { TechStackSection } from "@/components/marketing/tech-stack-section";
+import { TryItNowSection } from "@/components/marketing/try-it-now-section";
 import { heroKpis } from "@/lib/marketing/page-map";
 import {
   livePrototypeConfig,
@@ -129,12 +131,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      <section id="try-it-now" className={`${sectionClassName} border-t`}>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Try it now</h2>
-        <p className="mt-3 max-w-3xl text-muted-foreground">
-          Open the prototype, explore the flows, and preview the Wallet pass experience in a guided demo.
-        </p>
-      </section>
+      <TryItNowSection className={`${sectionClassName} border-t`} />
 
       <section id="live-prototype" className={`${sectionClassName} border-t`}>
         <h2 className="font-heading text-3xl font-semibold tracking-tight">Live prototype</h2>
@@ -174,16 +171,7 @@ export default function MarketingPage() {
         </p>
       </section>
 
-      <section
-        id="tech-stack"
-        className={`${sectionClassName} border-y`}
-        style={{ minHeight: "80vh" }}
-      >
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Tech stack</h2>
-        <p className="mt-3 max-w-3xl text-muted-foreground">
-          Built with Next.js, Tailwind CSS, and a reusable Applegreen brand system designed for rapid iteration.
-        </p>
-      </section>
+      <TechStackSection className={sectionClassName} />
     </>
   );
 }
