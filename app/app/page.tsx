@@ -1,39 +1,46 @@
+"use client";
+
+import { usePwaSession } from "@/components/pwa/pwa-shell";
 import { brand } from "@/lib/brand";
 
-const prototypeTabs = ["Home", "Earn", "Redeem", "Stations", "Wallet"] as const;
+export default function AppHomePage() {
+  const { user } = usePwaSession();
 
-export default function AppPrototypePage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-6 text-foreground">
-      <div className="mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl border bg-white p-5 shadow-sm">
-        <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Live prototype</p>
-          <h1 className="font-heading text-xl font-semibold tracking-tight">Applegreen Rewards app shell</h1>
-          <p className="text-sm text-muted-foreground">
-            Welcome to the interactive prototype. Core flows are shipping in the next milestone.
+    <section className="space-y-4">
+      <header className="space-y-1">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Rewards home</p>
+        <h1 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+          Hi, {user?.name ?? "there"}.
+        </h1>
+        <p className="text-sm text-muted-foreground">Your Applegreen loyalty profile is saved on this device.</p>
+      </header>
+
+      <article className="rounded-2xl border bg-card p-4 shadow-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Current balance</p>
+        <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{user?.points ?? 0} pts</p>
+        <p className="mt-1 text-sm text-foreground">
+          Tier:{" "}
+          <span className="font-semibold" style={{ color: brand.colors.primary }}>
+            {user?.tier ?? "Bronze"}
+          </span>
+        </p>
+      </article>
+
+      <div className="space-y-3 pb-12">
+        {[
+          "Navigate with the bottom tabs to preview shell routes.",
+          "Earn and redeem interactions land in the next milestone.",
+          "Road-trip and station experiences are scaffolded for upcoming features.",
+          "Wallet linking stays available under the Wallet tab.",
+          "This home screen is intentionally long to validate sticky bottom navigation behavior.",
+          "All app state in this milestone is persisted in localStorage under the applegreen namespace.",
+        ].map((note) => (
+          <p key={note} className="rounded-xl border bg-white p-3 text-sm text-muted-foreground">
+            {note}
           </p>
-        </header>
-
-        <section className="rounded-2xl border bg-card p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Member preview</p>
-          <p className="mt-2 text-sm text-foreground">Points: 0 · Tier: Bronze</p>
-        </section>
-
-        <nav aria-label="Prototype navigation" className="grid grid-cols-5 gap-2 rounded-2xl border bg-card p-2">
-          {prototypeTabs.map((tab, index) => (
-            <span
-              key={tab}
-              className="inline-flex items-center justify-center rounded-xl px-2 py-2 text-xs font-semibold"
-              style={{
-                backgroundColor: index === 0 ? brand.colors.primary : "transparent",
-                color: index === 0 ? brand.colors.white : "rgb(75 85 99)",
-              }}
-            >
-              {tab}
-            </span>
-          ))}
-        </nav>
+        ))}
       </div>
-    </main>
+    </section>
   );
 }
