@@ -1,0 +1,33 @@
+app/(marketing)/page.tsx
+  46cd9d54e1c52b71 3-9,29-44,67,69-106,112,114-129,142,144-167
+public/images/vision-roadtrip-mockup.svg
+  46cd9d54e1c52b71 1-56
+tests/unit/marketing-problem-vision.test.ts
+  46cd9d54e1c52b71 1-56
+app/app/page.tsx
+  46cd9d54e1c52b71 1-39
+lib/marketing/problem-vision-content.ts
+  46cd9d54e1c52b71 1-93
+public/images/vision-family-mockup.svg
+  46cd9d54e1c52b71 1-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "91f6b7855f14f1549de1560e3539786e2cec4dee",
+  "prompts": {
+    "46cd9d54e1c52b71": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "0f818c32-c80a-4f03-9e6a-f1d0eb83c2d8",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 405,
+      "total_deletions": 13,
+      "accepted_lines": 404,
+      "overriden_lines": 0
+    }
+  }
+}
