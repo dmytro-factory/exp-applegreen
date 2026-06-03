@@ -53,6 +53,7 @@ describe("pwa home contracts", () => {
 
   it("computes progress correctly for Bronze and Silver tiers", () => {
     expect(getTierProgress(0)).toEqual({ tier: "Bronze", percent: 0, remainingPoints: 500 });
+    expect(getTierProgress(515)).toEqual({ tier: "Silver", percent: 1.5, remainingPoints: 985 });
     expect(getTierProgress(750)).toEqual({ tier: "Silver", percent: 25, remainingPoints: 750 });
   });
 
