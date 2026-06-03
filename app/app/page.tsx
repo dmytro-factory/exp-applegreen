@@ -12,11 +12,18 @@ import {
   TODAYS_OFFERS,
   getTierProgress,
 } from "@/lib/loyalty/home";
-import { readParcelconnectDismissed, saveParcelconnectDismissed } from "@/lib/loyalty/storage";
+import {
+  clearActiveFuelDiscount,
+  readActiveFuelDiscount,
+  readParcelconnectDismissed,
+  saveParcelconnectDismissed,
+  type ActiveFuelDiscount,
+} from "@/lib/loyalty/storage";
 
 export default function AppHomePage() {
   const { user } = usePwaSession();
   const [parcelDismissed, setParcelDismissed] = useState<boolean | null>(null);
+  const [activeFuelDiscount, setActiveFuelDiscount] = useState<ActiveFuelDiscount | null>(null);
 
   const points = user?.points ?? 0;
   const greetingName = user?.name ?? "there";
@@ -24,6 +31,7 @@ export default function AppHomePage() {
 
   useEffect(() => {
     setParcelDismissed(readParcelconnectDismissed());
+    setActiveFuelDiscount(readActiveFuelDiscount());
   }, []);
 
   const nextTier = tierProgress.tier === "Bronze" ? "Silver" : tierProgress.tier === "Silver" ? "Gold" : null;
@@ -31,6 +39,11 @@ export default function AppHomePage() {
   const dismissParcelBanner = () => {
     saveParcelconnectDismissed(true);
     setParcelDismissed(true);
+  };
+
+  const dismissFuelDiscount = () => {
+    clearActiveFuelDiscount();
+    setActiveFuelDiscount(null);
   };
 
   return (
@@ -103,6 +116,34 @@ export default function AppHomePage() {
               type="button"
               onClick={dismissParcelBanner}
               aria-label="Dismiss parcel notification"
+              className="rounded-full border bg-white px-2 py-1 text-xs font-semibold text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              style={{ outlineColor: "var(--brand-primary)" }}
+            >
+              ✕
+            </button>
+          </div>
+        </section>
+      ) : null}
+
+      {activeFuelDiscount ? (
+        <section
+          className="rounded-2xl border p-4 shadow-sm"
+          aria-label="Active fuel discount"
+          style={{ borderColor: "var(--brand-primary)", backgroundColor: "rgb(245 250 238)" }}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em]" style={{ color: "var(--brand-dark)" }}>
+                Active coupon
+              </p>
+              <p className="mt-1 text-sm font-medium text-foreground">
+                {activeFuelDiscount.centsOffPerLitre}c/L off your next fill is ready.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={dismissFuelDiscount}
+              aria-label="Dismiss active fuel discount"
               className="rounded-full border bg-white px-2 py-1 text-xs font-semibold text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{ outlineColor: "var(--brand-primary)" }}
             >
