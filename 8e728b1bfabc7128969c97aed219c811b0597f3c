@@ -1,0 +1,33 @@
+app/app/page.tsx
+  8e71441bd17f08ce 3-5,8-15,19,21-34,37,41,43,47-56,58,60-62,64-170
+tests/unit/pwa-home.test.ts
+  8e71441bd17f08ce 1-91
+lib/loyalty/home.ts
+  8e71441bd17f08ce 1-90
+lib/loyalty/storage.ts
+  8e71441bd17f08ce 3,144-166
+public/images/partners/gocar.svg
+  8e71441bd17f08ce 1-5
+public/images/partners/insomnia.svg
+  8e71441bd17f08ce 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "8e728b1bfabc7128969c97aed219c811b0597f3c",
+  "prompts": {
+    "8e71441bd17f08ce": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "c928ee4e-b25a-4a99-a191-a69d0fdee13f",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 377,
+      "total_deletions": 29,
+      "accepted_lines": 366,
+      "overriden_lines": 0
+    }
+  }
+}
