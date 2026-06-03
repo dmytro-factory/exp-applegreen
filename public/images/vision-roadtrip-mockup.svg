@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="2160" viewBox="0 0 1080 2160" role="img" aria-labelledby="title desc">
+  <title id="title">Road-trip planner mockup</title>
+  <desc id="desc">A stylized Applegreen Rewards mobile screen showing route checkpoints and offers.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6FCEB" />
+      <stop offset="100%" stop-color="#E7F4D4" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1080" height="2160" fill="url(#bg)" />
+  <rect x="80" y="120" width="920" height="180" rx="48" fill="#659A27" />
+  <text x="140" y="230" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="700" fill="#FFFFFF">
+    Road-trip planner
+  </text>
+
+  <rect x="80" y="360" width="920" height="290" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="450" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="600" fill="#35570E">
+    Dublin → Galway
+  </text>
+  <text x="130" y="520" font-family="Inter, Arial, sans-serif" font-size="36" fill="#4B5563">
+    Family-friendly stops on M4 / M6
+  </text>
+  <circle cx="160" cy="595" r="16" fill="#659A27" />
+  <circle cx="300" cy="595" r="16" fill="#659A27" />
+  <circle cx="440" cy="595" r="16" fill="#659A27" />
+  <line x1="160" y1="595" x2="440" y2="595" stroke="#659A27" stroke-width="8" />
+
+  <rect x="80" y="720" width="920" height="320" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="820" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" fill="#1F2817">
+    Applegreen Kinnegad
+  </text>
+  <text x="130" y="890" font-family="Inter, Arial, sans-serif" font-size="34" fill="#4B5563">
+    EV charging · Coffee Club · Parcelconnect
+  </text>
+  <rect x="130" y="930" width="320" height="70" rx="24" fill="#659A27" />
+  <text x="180" y="978" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">
+    Add stop
+  </text>
+
+  <rect x="80" y="1110" width="920" height="840" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="1205" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="700" fill="#1F2817">
+    Route rewards
+  </text>
+  <rect x="130" y="1260" width="820" height="130" rx="28" fill="#F4F9EA" />
+  <text x="170" y="1340" font-family="Inter, Arial, sans-serif" font-size="34" fill="#35570E">
+    +25 pts at Athlone
+  </text>
+  <rect x="130" y="1430" width="820" height="130" rx="28" fill="#F4F9EA" />
+  <text x="170" y="1510" font-family="Inter, Arial, sans-serif" font-size="34" fill="#35570E">
+    5c/L fuel discount ready
+  </text>
+  <rect x="130" y="1600" width="820" height="130" rx="28" fill="#F4F9EA" />
+  <text x="170" y="1680" font-family="Inter, Arial, sans-serif" font-size="34" fill="#35570E">
+    Coffee Club punch unlocked
+  </text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="2160" viewBox="0 0 1080 2160" role="img" aria-labelledby="title desc">
+  <title id="title">Family rewards and parcel mockup</title>
+  <desc id="desc">A stylized Applegreen Rewards screen with family benefits and Parcelconnect notifications.</desc>
+  <defs>
+    <linearGradient id="bgFamily" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDFEF8" />
+      <stop offset="100%" stop-color="#EAF5DA" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1080" height="2160" fill="url(#bgFamily)" />
+
+  <rect x="80" y="120" width="920" height="200" rx="48" fill="#35570E" />
+  <text x="140" y="215" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF">
+    Family perks
+  </text>
+  <text x="140" y="275" font-family="Inter, Arial, sans-serif" font-size="34" fill="#DDECC6">
+    Applegreen Rewards 2.0
+  </text>
+
+  <rect x="80" y="390" width="920" height="250" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="485" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="700" fill="#1F2817">
+    Parcelconnect alert
+  </text>
+  <text x="130" y="555" font-family="Inter, Arial, sans-serif" font-size="34" fill="#4B5563">
+    Parcel ready at Applegreen Naas Road
+  </text>
+
+  <rect x="80" y="710" width="920" height="520" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="810" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" fill="#1F2817">
+    Family stop planner
+  </text>
+  <rect x="130" y="860" width="820" height="110" rx="26" fill="#F4F9EA" />
+  <text x="170" y="930" font-family="Inter, Arial, sans-serif" font-size="32" fill="#35570E">
+    Kids play zone
+  </text>
+  <rect x="130" y="1010" width="820" height="110" rx="26" fill="#F4F9EA" />
+  <text x="170" y="1080" font-family="Inter, Arial, sans-serif" font-size="32" fill="#35570E">
+    Baby changing + family meals
+  </text>
+  <rect x="130" y="1160" width="820" height="110" rx="26" fill="#F4F9EA" />
+  <text x="170" y="1230" font-family="Inter, Arial, sans-serif" font-size="32" fill="#35570E">
+    Dog-friendly rest area
+  </text>
+
+  <rect x="80" y="1300" width="920" height="760" rx="42" fill="#FFFFFF" stroke="#D9E8C9" stroke-width="6" />
+  <text x="130" y="1395" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="700" fill="#1F2817">
+    Vision snapshot
+  </text>
+  <text x="130" y="1470" font-family="Inter, Arial, sans-serif" font-size="34" fill="#4B5563">
+    One loyalty wallet for fuel, food, family, and parcels.
+  </text>
+  <rect x="130" y="1540" width="400" height="78" rx="24" fill="#659A27" />
+  <text x="175" y="1590" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">
+    Open prototype
+  </text>
+</svg>
