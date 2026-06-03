@@ -1,0 +1,49 @@
+app/app/stations/page.tsx
+  f1c46f6ab74fff29 1,4
+data/stations.json
+  f1c46f6ab74fff29 1-2,6,8-10,14,16-18,22,24-26,28-30,32-34,38,40-42,46,48-50,54,56-58,62,64-66,70,73-74,78,80-82,86,88-90,94,97-98,102,105-106,110,112-114,118,121-122,126,129-130,134,136-138,142,145-146,150,152-154,158,161-162,166,169-170,174,176-178,182,185-186,190,192-194,206,208,217-218,222,224,241-242
+  55abcf1054facc11 3-5,7,11-13,15,19-21,23,27,31,35-37,39,43-45,47,51-53,55,59-61,63,67-69,71-72,75-77,79,83-85,87,91-93,95-96,99-101,103-104,107-109,111,115-117,119-120,123-125,127-128,131-133,135,139-141,143-144,147-149,151,155-157,159-160,163-165,167-168,171-173,175,179-181,183-184,187-189,191,195-205,207,209-216,219-221,223,225-240
+components/pwa/stations-map.tsx
+  f1c46f6ab74fff29 1-204
+tests/unit/stations-locator.test.ts
+  55abcf1054facc11 1-65
+app/globals.css
+  f1c46f6ab74fff29 4
+tests/unit/stations.test.ts
+  f1c46f6ab74fff29 1-51
+lib/stations.ts
+  f1c46f6ab74fff29 1-62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "2e5dc3716df58858c762a2e158d1b82d2939def8",
+  "prompts": {
+    "55abcf1054facc11": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "25b9cea0-f20d-4d80-a875-60760a17bd27",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 209,
+      "total_deletions": 144,
+      "accepted_lines": 208,
+      "overriden_lines": 0
+    },
+    "f1c46f6ab74fff29": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "f139b0fb-27a6-4efd-b6ec-a3ac05ec5a46",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 580,
+      "total_deletions": 25,
+      "accepted_lines": 419,
+      "overriden_lines": 0
+    }
+  }
+}
