@@ -1,78 +1,98 @@
-import AdmZip from "adm-zip";
-import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { PKPass } from "passkit-generator";
+import {
+  loadWalletPassCertificates,
+  WalletPassConfigurationError,
+} from "../../../../lib/wallet/certificates";
+import { buildWalletPassJson } from "../../../../lib/wallet/pass";
 
-const ONE_BY_ONE_PNG = Buffer.from(
-  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO7+q7kAAAAASUVORK5CYII=",
-  "base64",
-);
+export const runtime = "nodejs";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const member = searchParams.get("member") || "demo-member";
+const ASSET_FILENAMES = ["icon.png", "icon@2x.png", "logo.png", "strip.png"] as const;
+let cachedAssets: Record<(typeof ASSET_FILENAMES)[number], Buffer> | null = null;
 
-  const parsedPoints = Number(searchParams.get("points"));
-  const points = Number.isFinite(parsedPoints) ? Math.max(0, Math.round(parsedPoints)) : 0;
+async function readWalletAssets() {
+  if (cachedAssets) {
+    return cachedAssets;
+  }
 
-  const passJson = {
-    formatVersion: 1,
-    passTypeIdentifier: "pass.ie.applegreen.demo",
-    teamIdentifier: "APPLEGREENDEMO",
-    serialNumber: `demo-${member}`,
-    organizationName: "Applegreen",
-    description: "Applegreen rewards demo pass",
-    logoText: "Applegreen Rewards",
-    foregroundColor: "rgb(255, 255, 255)",
-    backgroundColor: "rgb(101, 154, 39)",
-    labelColor: "rgb(255, 255, 255)",
-    barcodes: [
-      {
-        format: "PKBarcodeFormatQR",
-        message: `member:${member}`,
-        messageEncoding: "iso-8859-1",
-      },
-    ],
-    storeCard: {
-      primaryFields: [{ key: "points", label: "POINTS", value: points }],
-      secondaryFields: [{ key: "tier", label: "TIER", value: points >= 500 ? "Silver" : "Bronze" }],
-      backFields: [{ key: "parcel", label: "Parcelconnect", value: "Parcel ready at Applegreen Naas Road" }],
-    },
-  };
-
-  const passJsonBytes = Buffer.from(`${JSON.stringify(passJson, null, 2)}\n`);
-  const logoBytes = Buffer.concat([ONE_BY_ONE_PNG, Buffer.from("logo-padding".repeat(60))]);
-  const stripBytes = Buffer.concat([ONE_BY_ONE_PNG, Buffer.from("strip-padding".repeat(60))]);
-  const iconBytes = Buffer.concat([ONE_BY_ONE_PNG, Buffer.from("icon-padding".repeat(20))]);
-  const icon2xBytes = Buffer.concat([ONE_BY_ONE_PNG, Buffer.from("icon2x-padding".repeat(30))]);
-
-  const entries: Record<string, Buffer> = {
-    "pass.json": passJsonBytes,
-    "logo.png": logoBytes,
-    "strip.png": stripBytes,
-    "icon.png": iconBytes,
-    "icon@2x.png": icon2xBytes,
-  };
-
-  const manifest = Object.fromEntries(
-    Object.entries(entries).map(([filename, bytes]) => [
-      filename,
-      createHash("sha1").update(bytes).digest("hex"),
-    ]),
+  const basePath = join(process.cwd(), "public", "wallet-assets");
+  const loaded = await Promise.all(
+    ASSET_FILENAMES.map(async (filename) => {
+      const bytes = await readFile(join(basePath, filename));
+      return [filename, bytes] as const;
+    }),
   );
 
-  const zip = new AdmZip();
-  for (const [filename, bytes] of Object.entries(entries)) {
-    zip.addFile(filename, bytes);
-  }
-  zip.addFile("manifest.json", Buffer.from(JSON.stringify(manifest, null, 2)));
-  zip.addFile("signature", Buffer.from("self-signed-demo-signature"));
-  zip.addFile("padding.txt", Buffer.from("x".repeat(2048)));
+  cachedAssets = Object.fromEntries(loaded) as Record<(typeof ASSET_FILENAMES)[number], Buffer>;
+  return cachedAssets;
+}
 
-  return new Response(zip.toBuffer(), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/vnd.apple.pkpass",
-      "Content-Disposition": 'attachment; filename="applegreen-demo.pkpass"',
-      "Cache-Control": "no-store",
+function walletNotConfiguredResponse() {
+  return Response.json(
+    { error: "wallet pass not configured" },
+    {
+      status: 503,
+      headers: {
+        "Cache-Control": "no-store",
+      },
     },
-  });
+  );
+}
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const parsedPoints = Number(searchParams.get("points"));
+    const points = Number.isFinite(parsedPoints) ? parsedPoints : undefined;
+
+    const passJson = buildWalletPassJson(
+      {
+        memberId: searchParams.get("member"),
+        points,
+        persistedTier: searchParams.get("tier"),
+      },
+      {
+        passTypeIdentifier: process.env.PASS_TYPE_IDENTIFIER,
+        teamIdentifier: process.env.PASS_TEAM_IDENTIFIER,
+      },
+    );
+
+    const certificates = loadWalletPassCertificates(process.env);
+    const assets = await readWalletAssets();
+
+    const pass = new PKPass(
+      {
+        "pass.json": Buffer.from(`${JSON.stringify(passJson, null, 2)}\n`),
+        ...assets,
+      },
+      certificates,
+    );
+    const passBuffer = pass.getAsBuffer();
+
+    return new Response(new Uint8Array(passBuffer), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/vnd.apple.pkpass",
+        "Content-Disposition": 'attachment; filename="applegreen-rewards.pkpass"',
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (error) {
+    if (error instanceof WalletPassConfigurationError) {
+      return walletNotConfiguredResponse();
+    }
+
+    console.error("Failed to build wallet pass", error);
+    return Response.json(
+      { error: "wallet pass generation failed" },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  }
 }
