@@ -1,0 +1,40 @@
+[
+  {
+    "id": "m4-m6-dublin-galway",
+    "name": "Dublin to Galway via M4/M6",
+    "aliases": {
+      "origin": ["dublin", "dublin city", "dublin ireland"],
+      "destination": ["galway", "galway city", "galway ireland"]
+    },
+    "stops": [
+      {
+        "id": "ie-enfield-east",
+        "name": "Applegreen Enfield Eastbound",
+        "waypoint": "Applegreen Enfield Eastbound, M4 Motorway, Co. Meath",
+        "distanceKm": 47,
+        "badges": ["kids", "baby-change", "dog", "ev"]
+      },
+      {
+        "id": "ie-kinnegad-plaza",
+        "name": "Applegreen Kinnegad Plaza",
+        "waypoint": "Applegreen Kinnegad Plaza, M6 Junction 1, Co. Westmeath",
+        "distanceKm": 72,
+        "badges": ["kids", "baby-change", "ev"]
+      },
+      {
+        "id": "ie-athlone",
+        "name": "Applegreen Athlone",
+        "waypoint": "Applegreen Athlone, Dublin Road, Co. Westmeath",
+        "distanceKm": 124,
+        "badges": ["kids", "baby-change", "dog", "ev"]
+      },
+      {
+        "id": "ie-ballinasloe",
+        "name": "Applegreen Ballinasloe",
+        "waypoint": "Applegreen Ballinasloe, M6 Service Area, Co. Galway",
+        "distanceKm": 154,
+        "badges": ["kids", "baby-change", "dog"]
+      }
+    ]
+  }
+]

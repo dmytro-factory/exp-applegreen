@@ -1,10 +1,5 @@
-import { PlaceholderScreen } from "@/components/pwa/placeholder-screen";
+import { RoadTripPlanner } from "@/components/pwa/road-trip-planner";
 
 export default function RoadTripPage() {
-  return (
-    <PlaceholderScreen
-      title="Road trip"
-      description="Trip planning and map handoff are staged for the dedicated road-trip milestone."
-    />
-  );
+  return <RoadTripPlanner />;
 }
