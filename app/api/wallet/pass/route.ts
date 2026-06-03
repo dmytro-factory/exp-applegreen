@@ -84,7 +84,6 @@ export async function GET(request: Request) {
       return walletNotConfiguredResponse();
     }
 
-    console.error("Failed to build wallet pass", error);
     return Response.json(
       { error: "wallet pass generation failed" },
       {

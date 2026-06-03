@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { brand } from "../brand";
 import { ensureQrEncodable } from "../qr";
-import { tierFromPoints, type LoyaltyTier } from "../loyalty/storage";
+import { tierFromPoints } from "../loyalty/storage";
 
 const DEFAULT_MEMBER_ID = "demo";
 const DEFAULT_POINTS = 0;
@@ -107,7 +107,7 @@ export function buildWalletPassJson(input: WalletPassInput, options: WalletPassO
     ],
     storeCard: {
       primaryFields: [{ key: "points", label: "POINTS", value: points }],
-      secondaryFields: [{ key: "tier", label: "TIER", value: tier as LoyaltyTier }],
+      secondaryFields: [{ key: "tier", label: "TIER", value: tier }],
       backFields: [
         { key: "parcel", label: "Parcelconnect", value: PARCEL_BACKFIELD_COPY },
       ],
