@@ -1,0 +1,37 @@
+tests/unit/marketing-shell-content.test.ts
+  471c0c0fc268a638 1-34
+components/brand/applegreen-logo.tsx
+  471c0c0fc268a638 1-20
+lib/marketing/page-map.ts
+  471c0c0fc268a638 1-26
+app/(marketing)/layout.tsx
+  471c0c0fc268a638 1-64
+components/marketing/in-page-nav.tsx
+  471c0c0fc268a638 1-96
+app/(marketing)/page.tsx
+  471c0c0fc268a638 1-97
+app/globals.css
+  471c0c0fc268a638 131
+app/layout.tsx
+  471c0c0fc268a638 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "a5fe7cf37294bf3f985eecbb6e0774538d2792ed",
+  "prompts": {
+    "471c0c0fc268a638": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "eb622941-c013-409d-92ea-d1151f0e2be3",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 348,
+      "total_deletions": 11,
+      "accepted_lines": 339,
+      "overriden_lines": 0
+    }
+  }
+}
