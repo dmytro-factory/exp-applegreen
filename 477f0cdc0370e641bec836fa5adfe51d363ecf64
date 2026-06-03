@@ -1,0 +1,29 @@
+tests/unit/pwa-home.test.ts
+  bae71282de9ea9d0 56
+lib/loyalty/earn.ts
+  bae71282de9ea9d0 1-102
+tests/unit/pwa-earn.test.ts
+  bae71282de9ea9d0 1-52
+app/app/earn/page.tsx
+  bae71282de9ea9d0 1,3-8,11-95,97-210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "477f0cdc0370e641bec836fa5adfe51d363ecf64",
+  "prompts": {
+    "bae71282de9ea9d0": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "bf10ab0c-a789-4ea3-843c-cea0db5f97ff",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 362,
+      "total_deletions": 5,
+      "accepted_lines": 362,
+      "overriden_lines": 0
+    }
+  }
+}
