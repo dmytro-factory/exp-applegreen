@@ -1,0 +1,35 @@
+components/marketing/tech-stack-section.tsx
+  8b248d0f46d1e066 1-40
+tests/unit/marketing-try-it-tech-stack.test.ts
+  8b248d0f46d1e066 1-35
+app/(marketing)/page.tsx
+  8b248d0f46d1e066 2-3,134,174
+lib/marketing/try-it-tech-stack-content.ts
+  8b248d0f46d1e066 1-30
+tests/unit/wallet-pass-route.test.ts
+  8b248d0f46d1e066 1-13
+app/api/wallet/pass/route.ts
+  8b248d0f46d1e066 1-78
+components/marketing/try-it-now-section.tsx
+  8b248d0f46d1e066 1-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "7bbaae1c5feccb281ab99def806b4965fb963534",
+  "prompts": {
+    "8b248d0f46d1e066": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "f6de74b6-a312-4d5d-adb2-685c99fd2943",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 365,
+      "total_deletions": 20,
+      "accepted_lines": 361,
+      "overriden_lines": 0
+    }
+  }
+}
