@@ -1,0 +1,23 @@
+lib/wallet/pass.ts
+  2dc15ecc07e46e5e 4,110
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "8b216c948572d9d99cb5225396805c78f4e178ef",
+  "prompts": {
+    "2dc15ecc07e46e5e": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "fea0c232-2f24-41f9-9fd5-7449942dffdb",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 5,
+      "accepted_lines": 201,
+      "overriden_lines": 0
+    }
+  }
+}
