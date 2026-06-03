@@ -1,5 +1,6 @@
 export const APPLEGREEN_STORAGE_PREFIX = "applegreen:";
 export const LOYALTY_USER_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}user`;
+export const PARCELCONNECT_DISMISSED_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}parcelconnect-dismissed`;
 
 export type LoyaltyTier = "Bronze" | "Silver" | "Gold";
 
@@ -139,4 +140,28 @@ export function resetLoyaltyUser(storage?: StorageLike | null) {
   }
 
   storageRef.removeItem(LOYALTY_USER_STORAGE_KEY);
+}
+
+export function readParcelconnectDismissed(storage?: StorageLike | null): boolean {
+  const storageRef = resolveStorage(storage);
+  if (!storageRef) {
+    return false;
+  }
+
+  const raw = storageRef.getItem(PARCELCONNECT_DISMISSED_STORAGE_KEY);
+  return raw === "1" || raw === "true";
+}
+
+export function saveParcelconnectDismissed(dismissed: boolean, storage?: StorageLike | null) {
+  const storageRef = resolveStorage(storage);
+  if (!storageRef) {
+    return;
+  }
+
+  if (!dismissed) {
+    storageRef.removeItem(PARCELCONNECT_DISMISSED_STORAGE_KEY);
+    return;
+  }
+
+  storageRef.setItem(PARCELCONNECT_DISMISSED_STORAGE_KEY, "1");
 }

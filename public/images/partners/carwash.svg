@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Car wash logo">
+  <rect width="96" height="96" rx="20" fill="#659A27" />
+  <rect x="22" y="32" width="52" height="28" rx="8" fill="#FFFFFF" />
+  <circle cx="36" cy="64" r="5" fill="#FFFFFF" />
+  <circle cx="60" cy="64" r="5" fill="#FFFFFF" />
+</svg>
