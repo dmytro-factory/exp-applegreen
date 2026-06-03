@@ -1,0 +1,31 @@
+tests/unit/road-trip.test.ts
+  491d0cad476d1c73 1-62
+data/road-trip-corridors.json
+  491d0cad476d1c73 1-40
+components/pwa/road-trip-planner.tsx
+  491d0cad476d1c73 1-287
+app/app/road-trip/page.tsx
+  491d0cad476d1c73 1,4
+lib/road-trip.ts
+  491d0cad476d1c73 1-136
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "44b1013ed923417360d388b22ee67ff2aa623830",
+  "prompts": {
+    "491d0cad476d1c73": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "d2a336db-0783-4cb9-827e-b89f3d918864",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 527,
+      "total_deletions": 7,
+      "accepted_lines": 527,
+      "overriden_lines": 0
+    }
+  }
+}
