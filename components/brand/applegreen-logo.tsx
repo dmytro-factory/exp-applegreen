@@ -1,4 +1,4 @@
-import { brand } from "@/lib/brand";
+import Image from "next/image";
 
 type ApplegreenLogoProps = {
   className?: string;
@@ -6,15 +6,17 @@ type ApplegreenLogoProps = {
 
 export function ApplegreenLogo({ className }: ApplegreenLogoProps) {
   return (
-    <span className={`inline-flex items-center gap-2 ${className ?? ""}`.trim()}>
-      <span
-        aria-hidden
-        className="inline-block h-4 w-4 rounded-full"
-        style={{ backgroundColor: brand.colors.primary }}
+    <span
+      className={`inline-flex items-center rounded-md bg-[#1a1a1a] px-2 py-1 ${className ?? ""}`.trim()}
+    >
+      <Image
+        src="/applegreen-logo.png"
+        alt="Applegreen"
+        width={140}
+        height={40}
+        className="h-7 w-auto object-contain"
+        priority
       />
-      <span className="font-heading text-lg font-semibold tracking-tight text-foreground">
-        Applegreen
-      </span>
     </span>
   );
 }
