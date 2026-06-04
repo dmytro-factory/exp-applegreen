@@ -1,0 +1,23 @@
+README.md
+  dfe5881936a4405b 1,5,7-13,16,19,22,24,27,29-30,33,35,37-40,42,44-47,49-51,53-59,61,63-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "1b8eb0b933c071fb8e3c47075369d0ceda36e76d",
+  "prompts": {
+    "dfe5881936a4405b": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "4e2b4e3c-285d-4b97-8e5c-b71fd286e270",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 50,
+      "total_deletions": 34,
+      "accepted_lines": 45,
+      "overriden_lines": 0
+    }
+  }
+}
