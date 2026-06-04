@@ -458,6 +458,12 @@ export const validators: MissionValidator[] = [
     type: "USER-TESTING",
     focus: "Session IDs: 641db1e3-fe1d-4e5c-932f-ee9307806918",
   },
+  {
+    id: "user-testing-validator-m7-polish-and-runbook",
+    name: "user-testing-validator",
+    type: "USER-TESTING",
+    focus: "Session IDs: fef02053-c305-4364-abd7-2ee448b46dae",
+  },
 ];
 
 export const deliverables: MissionDeliverable[] = [
