@@ -1,0 +1,29 @@
+app/(marketing)/mission/data.ts
+  6883b8a9b7fe4cba 51
+tests/unit/marketing-shell-content.test.ts
+  6883b8a9b7fe4cba 9-10
+tests/unit/mission-narrative-page-content.test.ts
+  6883b8a9b7fe4cba 33
+app/(marketing)/mission/page.tsx
+  6883b8a9b7fe4cba 127-165
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "a53d0f703e10b206863dac9a3c5130eb922bf870",
+  "prompts": {
+    "6883b8a9b7fe4cba": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "44d79c77-50f5-4197-b2bc-57dd7b34434a",
+        "model": "kimi-k2.6"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 43,
+      "total_deletions": 4,
+      "accepted_lines": 43,
+      "overriden_lines": 0
+    }
+  }
+}
