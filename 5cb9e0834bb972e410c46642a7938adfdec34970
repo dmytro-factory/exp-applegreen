@@ -1,0 +1,23 @@
+app/(marketing)/mission/data.ts
+  d6795cffebc6e438 461-466
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "5cb9e0834bb972e410c46642a7938adfdec34970",
+  "prompts": {
+    "d6795cffebc6e438": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "8764e861-77ff-4a6f-81c1-620a950d5790",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 0,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    }
+  }
+}
