@@ -1,0 +1,55 @@
+tests/unit/mission-narrative-data.test.ts
+  b8fe4dd6a1d37bd9 1-73
+components/mission/milestone-gantt.tsx
+  b8fe4dd6a1d37bd9 1-212
+components/mission/milestone-gantt-utils.ts
+  b8fe4dd6a1d37bd9 1-91
+app/(marketing)/mission/data.ts
+  b8fe4dd6a1d37bd9 1-185
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "c10e4777dc25c9c217ec9fa7e94e489f7addf700",
+  "prompts": {
+    "07abb2ad8c16054d": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "95506df2-6afc-4404-bfb6-c558a7aaace3",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 325,
+      "total_deletions": 326,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "b8fe4dd6a1d37bd9": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "cf0d0de2-4b9f-4765-b5be-234ff0d8e2a6",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 563,
+      "total_deletions": 2,
+      "accepted_lines": 561,
+      "overriden_lines": 0
+    },
+    "fb9b774f62e10766": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "d5e211b7-6322-4cc7-b1b0-5a204f977d41",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 398,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  }
+}
