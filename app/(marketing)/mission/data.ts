@@ -31,6 +31,47 @@ export type MissionDeliverable = {
   summary: string;
 };
 
+export const missionSectionOrder = [
+  "input",
+  "orchestrator-goal",
+  "gantt",
+  "milestone-breakdown",
+  "worker-validator-explainer",
+  "sealed-milestones",
+  "execution-notes",
+  "tech-stack",
+  "deliverables",
+] as const;
+
+export const originalUserPrompt =
+  "Build app/(marketing)/mission/page.tsx mirroring the snow-migration reference layout: input (original user prompt verbatim) -> orchestrator goal -> gantt -> per-milestone breakdown cards (title/duration/summary, one per milestone) -> worker/validator explainer (names scrutiny + user-testing) -> sealed milestones with pushback counts -> execution notes -> tech stack -> deliverables (clickable links to marketing, PWA, repo, pass endpoint). Includes /mission link in marketing nav/footer, single h1 + clean heading hierarchy, image/chart alt text, and mobile (390px) layout.";
+
+export const orchestratorGoal =
+  "Ship a mission narrative page that mirrors the snow-migration structure, proves each milestone outcome with evidence-ready sections, and keeps the marketing-to-mission path obvious for reviewers.";
+
+export const workerValidatorExplainer = [
+  "Worker lanes deliver product increments and move each milestone to a reviewable state.",
+  "scrutiny-validator enforces code-quality gates and requests pushback when evidence is incomplete.",
+  "user-testing-validator validates user-facing behavior at desktop and mobile viewport sizes.",
+] as const;
+
+export const missionExecutionNotes = [
+  "Pushbacks concentrated around navigation behavior and contract fidelity, so each milestone was sealed only after scrutiny + user-testing rechecks.",
+  "The mission used strict mobile-first checks to keep 390px and 393×852 viewports readable without route-level regressions.",
+  "Wallet pass behavior was validated programmatically and in browser flows so pass generation stayed aligned with visible PWA state.",
+] as const;
+
+export const techStackDependencies = [
+  "Next.js 15",
+  "Tailwind CSS 4",
+  "Recharts",
+  "passkit-generator",
+  "Vitest",
+] as const;
+
+export const missionInputPrompt = originalUserPrompt;
+export const missionTechStack = techStackDependencies;
+
 const MINUTE_MS = 60_000;
 
 function minutesBetween(start: string, end: string): number {
@@ -179,7 +220,7 @@ export const pushbackHighlights = milestones
   .map((milestone) => ({
     milestoneId: milestone.id,
     pushbackCount: milestone.pushbackCount,
-    copy: `${milestone.title} sealed after ${milestone.pushbackCount} pushback${
+    copy: `${milestone.title}: ${milestone.pushbackCount} pushback${
       milestone.pushbackCount === 1 ? "" : "s"
-    }.`,
+    } before seal.`,
   }));

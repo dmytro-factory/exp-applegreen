@@ -133,14 +133,15 @@ export function MilestoneGantt({ milestones, className }: MilestoneGanttProps) {
         <span className="text-xs text-muted-foreground">Striped bars and badges highlight pushbacks.</span>
       </div>
 
-      <div className="w-full min-w-0" style={{ height: chartHeight }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={model.rows}
-            layout="vertical"
-            margin={{ top: 12, right: 32, bottom: 20, left: 8 }}
-            barCategoryGap={14}
-          >
+      <div className="w-full overflow-x-auto">
+        <div className="min-w-[720px]" style={{ height: chartHeight }}>
+          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={chartHeight}>
+            <BarChart
+              data={model.rows}
+              layout="vertical"
+              margin={{ top: 12, right: 32, bottom: 20, left: 8 }}
+              barCategoryGap={14}
+            >
             <defs>
               <pattern
                 id={chartPatternId}
@@ -187,25 +188,26 @@ export function MilestoneGantt({ milestones, className }: MilestoneGanttProps) {
               }}
             />
 
-            <Bar
-              dataKey="startOffsetMinutes"
-              stackId="mission"
-              fill="transparent"
-              isAnimationActive={false}
-              legendType="none"
-            />
-            <Bar
-              dataKey="durationMinutes"
-              stackId="mission"
-              isAnimationActive={false}
-              shape={<MilestoneBarShape patternId={chartPatternId} />}
-            >
-              {model.rows.map((row) => (
-                <Cell key={row.id} fill={MISSION_PHASE_COLORS[row.phase]} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+              <Bar
+                dataKey="startOffsetMinutes"
+                stackId="mission"
+                fill="transparent"
+                isAnimationActive={false}
+                legendType="none"
+              />
+              <Bar
+                dataKey="durationMinutes"
+                stackId="mission"
+                isAnimationActive={false}
+                shape={<MilestoneBarShape patternId={chartPatternId} />}
+              >
+                {model.rows.map((row) => (
+                  <Cell key={row.id} fill={MISSION_PHASE_COLORS[row.phase]} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </section>
   );

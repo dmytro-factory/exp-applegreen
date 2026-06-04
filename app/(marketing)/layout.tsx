@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ApplegreenLogo } from "@/components/brand/applegreen-logo";
 import { InPageNav } from "@/components/marketing/in-page-nav";
 import { marketingPageMap, marketingShellMetadata } from "@/lib/marketing/page-map";
@@ -20,14 +21,22 @@ export default function MarketingLayout({
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between">
-          <a
-            href="#hero"
+          <Link
+            href="/"
             aria-label="Applegreen logo and home"
             className="inline-flex w-fit items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
           >
             <ApplegreenLogo />
-          </a>
-          <InPageNav sections={marketingPageMap} />
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/mission"
+              className="rounded-full border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
+            >
+              Mission
+            </Link>
+            <InPageNav sections={marketingPageMap} />
+          </div>
         </div>
       </header>
 
@@ -49,6 +58,12 @@ export default function MarketingLayout({
             >
               Tech stack
             </a>
+            <Link
+              href="/mission"
+              className="rounded-md transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
+            >
+              Mission
+            </Link>
             <a
               href="https://github.com/dmytro-factory/exp-applegreen"
               rel="noreferrer"
