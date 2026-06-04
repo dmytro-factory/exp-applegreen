@@ -29,13 +29,13 @@ export default function MarketingLayout({
             <ApplegreenLogo />
           </Link>
           <div className="flex items-center gap-3">
+            <InPageNav sections={marketingPageMap} />
             <Link
               href="/mission"
-              className="rounded-full border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
+              className="rounded-full bg-[#659A27] px-3 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
             >
-              Mission
+              Built with mission
             </Link>
-            <InPageNav sections={marketingPageMap} />
           </div>
         </div>
       </header>
@@ -51,12 +51,6 @@ export default function MarketingLayout({
               className="rounded-md transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
             >
               Back to top
-            </a>
-            <a
-              href="#tech-stack"
-              className="rounded-md transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
-            >
-              Tech stack
             </a>
             <Link
               href="/mission"

@@ -4,12 +4,11 @@ export type MarketingSection = {
 };
 
 export const marketingPageMap: MarketingSection[] = [
-  { id: "hero", label: "Hero" },
+  { id: "hero", label: "Home" },
   { id: "problem", label: "Problem" },
   { id: "vision", label: "Vision" },
   { id: "try-it-now", label: "Try it now" },
   { id: "live-prototype", label: "Live prototype" },
-  { id: "tech-stack", label: "Tech stack" },
 ];
 
 export const heroKpis = [

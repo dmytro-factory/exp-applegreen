@@ -6,15 +6,14 @@ import {
 } from "../../lib/marketing/page-map";
 
 describe("marketing shell page map", () => {
-  it("defines all six required in-page sections", () => {
-    expect(marketingPageMap).toHaveLength(6);
+  it("defines all five required in-page sections", () => {
+    expect(marketingPageMap).toHaveLength(5);
     expect(marketingPageMap.map((section) => section.label)).toEqual([
-      "Hero",
+      "Home",
       "Problem",
       "Vision",
       "Try it now",
       "Live prototype",
-      "Tech stack",
     ]);
   });
 

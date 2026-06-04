@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { brand } from "@/lib/brand";
-import { TechStackSection } from "@/components/marketing/tech-stack-section";
 import { TryItNowSection } from "@/components/marketing/try-it-now-section";
 import { heroKpis } from "@/lib/marketing/page-map";
 import {
@@ -164,14 +163,6 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      <section id="mission-narrative" className={`${sectionClassName} border-t`}>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Mission narrative</h2>
-        <p className="mt-3 max-w-3xl text-muted-foreground">
-          Follow the execution story from idea to delivery, including milestones, validators, and outcomes.
-        </p>
-      </section>
-
-      <TechStackSection className={sectionClassName} />
     </>
   );
 }

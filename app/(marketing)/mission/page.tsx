@@ -1,3 +1,4 @@
+import { TechStackSection } from "@/components/marketing/tech-stack-section";
 import { MilestoneGantt } from "@/components/mission/milestone-gantt";
 import {
   deliverables,
@@ -6,7 +7,6 @@ import {
   orchestratorGoal,
   originalUserPrompt,
   pushbackHighlights,
-  techStackDependencies,
 } from "./data";
 
 const sectionClassName =
@@ -95,13 +95,8 @@ export default function MissionNarrativePage() {
         </ul>
       </section>
 
-      <section id="tech-stack" className={`${sectionClassName} border-t`}>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Tech stack</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">
-          {techStackDependencies.map((dependency) => (
-            <li key={dependency}>{dependency}</li>
-          ))}
-        </ul>
+      <section id="tech-stack">
+        <TechStackSection className={sectionClassName} />
       </section>
 
       <section id="deliverables" className={`${sectionClassName} border-y`}>
