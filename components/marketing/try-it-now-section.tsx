@@ -3,7 +3,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { brand } from "@/lib/brand";
+import {
+  LOYALTY_USER_STORAGE_KEY,
+  LOYALTY_USER_UPDATED_EVENT,
+  readLoyaltyUser,
+} from "@/lib/loyalty/storage";
 import { createQrDataUrl } from "@/lib/qr";
+import { buildWalletPassHref } from "@/lib/wallet/cta";
 import {
   simulatorDisclaimer,
   tryItInstructions,
@@ -13,9 +19,33 @@ import {
 export function TryItNowSection({ className }: { className: string }) {
   const [origin, setOrigin] = useState("");
   const [qrDataUrl, setQrDataUrl] = useState("");
+  const [walletHref, setWalletHref] = useState(() => buildWalletPassHref(null));
 
   useEffect(() => {
+    const syncWalletHref = () => {
+      setWalletHref(buildWalletPassHref(readLoyaltyUser()));
+    };
+
+    const handleStorage = (event: StorageEvent) => {
+      if (!event.key || event.key === LOYALTY_USER_STORAGE_KEY) {
+        syncWalletHref();
+      }
+    };
+
+    const handleUserUpdated = () => {
+      syncWalletHref();
+    };
+
     setOrigin(window.location.origin);
+    syncWalletHref();
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(LOYALTY_USER_UPDATED_EVENT, handleUserUpdated);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(LOYALTY_USER_UPDATED_EVENT, handleUserUpdated);
+    };
   }, []);
 
   useEffect(() => {
@@ -93,7 +123,7 @@ export function TryItNowSection({ className }: { className: string }) {
           </ol>
 
           <a
-            href={walletPassCta.href}
+            href={walletHref}
             className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{ backgroundColor: brand.colors.primary, outlineColor: brand.colors.primary }}
           >

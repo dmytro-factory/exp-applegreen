@@ -50,6 +50,7 @@ export async function GET(request: Request) {
     const passJson = buildWalletPassJson(
       {
         memberId: searchParams.get("member"),
+        memberName: searchParams.get("name"),
         points,
         persistedTier: searchParams.get("tier"),
       },

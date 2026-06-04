@@ -1,5 +1,6 @@
 export const APPLEGREEN_STORAGE_PREFIX = "applegreen:";
 export const LOYALTY_USER_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}user`;
+export const LOYALTY_USER_UPDATED_EVENT = `${APPLEGREEN_STORAGE_PREFIX}user-updated`;
 export const PARCELCONNECT_DISMISSED_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}parcelconnect-dismissed`;
 export const COFFEE_CLUB_PUNCHES_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}coffee-club-punches`;
 export const CAR_WASH_CLUB_PUNCHES_STORAGE_KEY = `${APPLEGREEN_STORAGE_PREFIX}car-wash-club-punches`;
@@ -37,6 +38,14 @@ function resolveStorage(storage?: StorageLike | null): StorageLike | null {
   }
 
   return window.localStorage;
+}
+
+function notifyLoyaltyUserUpdated() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.dispatchEvent(new Event(LOYALTY_USER_UPDATED_EVENT));
 }
 
 export function tierFromPoints(points: number): LoyaltyTier {
@@ -180,6 +189,8 @@ export function saveLoyaltyUser(user: LoyaltyUser, storage?: StorageLike | null)
     storageRef.setItem(LOYALTY_USER_STORAGE_KEY, JSON.stringify(normalized));
   }
 
+  notifyLoyaltyUserUpdated();
+
   return normalized;
 }
 
@@ -200,6 +211,7 @@ export function resetLoyaltyUser(storage?: StorageLike | null) {
   }
 
   storageRef.removeItem(LOYALTY_USER_STORAGE_KEY);
+  notifyLoyaltyUserUpdated();
 }
 
 export function readParcelconnectDismissed(storage?: StorageLike | null): boolean {

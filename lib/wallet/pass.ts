@@ -4,6 +4,7 @@ import { ensureQrEncodable } from "../qr";
 import { tierFromPoints } from "../loyalty/storage";
 
 const DEFAULT_MEMBER_ID = "demo";
+const DEFAULT_MEMBER_NAME = "Guest Member";
 const DEFAULT_POINTS = 0;
 const DEFAULT_PASS_TYPE_IDENTIFIER = "pass.ie.applegreen.demo";
 const DEFAULT_TEAM_IDENTIFIER = "APPLEGREENDEMO";
@@ -11,6 +12,7 @@ const PARCEL_BACKFIELD_COPY = "Parcel ready at Applegreen Naas Road";
 
 export type WalletPassInput = {
   memberId?: string | null;
+  memberName?: string | null;
   points?: number;
   persistedTier?: string | null;
 };
@@ -43,6 +45,15 @@ function normalizePoints(points?: number): number {
   }
 
   return Math.max(0, Math.round(points));
+}
+
+function normalizeMemberName(memberName?: string | null): string {
+  const stripped = memberName?.trim() ?? "";
+  if (!stripped) {
+    return DEFAULT_MEMBER_NAME;
+  }
+
+  return stripped.slice(0, 80);
 }
 
 function normalizePassTypeIdentifier(passTypeIdentifier?: string | null): string {
@@ -83,6 +94,7 @@ export function createWalletBarcodeMessage(memberId: string): string {
 
 export function buildWalletPassJson(input: WalletPassInput, options: WalletPassOptions = {}) {
   const memberId = normalizeMemberId(input.memberId);
+  const memberName = normalizeMemberName(input.memberName);
   const points = normalizePoints(input.points);
   const tier = tierFromPoints(points);
   const barcodeMessage = createWalletBarcodeMessage(memberId);
@@ -108,6 +120,7 @@ export function buildWalletPassJson(input: WalletPassInput, options: WalletPassO
     storeCard: {
       primaryFields: [{ key: "points", label: "POINTS", value: points }],
       secondaryFields: [{ key: "tier", label: "TIER", value: tier }],
+      auxiliaryFields: [{ key: "memberName", label: "MEMBER", value: memberName }],
       backFields: [
         { key: "parcel", label: "Parcelconnect", value: PARCEL_BACKFIELD_COPY },
       ],

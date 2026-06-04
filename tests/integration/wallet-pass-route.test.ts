@@ -186,7 +186,7 @@ afterAll(() => {
 
 describe("wallet pass route integration", () => {
   it("returns a signed pkpass bundle that satisfies the wallet contract fields", async () => {
-    const { response, bytes } = await requestPass("/api/wallet/pass?member=demo&points=750");
+    const { response, bytes } = await requestPass("/api/wallet/pass?member=demo&name=Dmytro%20Y.&points=750");
 
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toBe("application/vnd.apple.pkpass");
@@ -224,6 +224,7 @@ describe("wallet pass route integration", () => {
 
     expect(readPointsValue(passJson)).toBe(750);
     expect(passJson.storeCard.secondaryFields[0].value).toBe("Silver");
+    expect(passJson.storeCard.auxiliaryFields[0].value).toBe("Dmytro Y.");
     expect(passJson.storeCard.backFields.some((field: { value?: string }) => /parcel/i.test(String(field.value)))).toBe(true);
 
     expect(passJson.barcodes[0]).toMatchObject({
@@ -287,6 +288,20 @@ describe("wallet pass route integration", () => {
     expect(Number.isFinite(defaultPoints)).toBe(true);
     expect(defaultPoints).toBeGreaterThanOrEqual(0);
     expect(readPointsValue(nonNumericPass)).toBe(defaultPoints);
+  });
+
+  it("uses the requested member name instead of a hard-coded placeholder", async () => {
+    const { response, bytes } = await requestPass("/api/wallet/pass?member=member-alpha&name=Ava%20Kelly&points=320");
+
+    expect(response.status).toBe(200);
+
+    const passJson = JSON.parse(unzipPass(bytes).readAsText("pass.json"));
+    const auxiliaryValues = (passJson.storeCard?.auxiliaryFields ?? []).map((field: { value?: string }) =>
+      String(field.value ?? ""),
+    );
+
+    expect(auxiliaryValues).toContain("Ava Kelly");
+    expect(auxiliaryValues).not.toContain("Demo User");
   });
 
   it("returns a graceful 5xx error when wallet cert env vars are missing", async () => {

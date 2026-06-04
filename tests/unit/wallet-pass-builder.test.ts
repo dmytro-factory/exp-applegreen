@@ -11,4 +11,14 @@ describe("wallet pass builder", () => {
 
     expect(passJson.storeCard.secondaryFields[0].value).toBe("Bronze");
   });
+
+  it("surfaces the onboarded member name in a visible field", () => {
+    const passJson = buildWalletPassJson({
+      memberId: "dmytro-y",
+      memberName: "Dmytro Y.",
+      points: 750,
+    });
+
+    expect(passJson.storeCard.auxiliaryFields[0].value).toBe("Dmytro Y.");
+  });
 });
