@@ -1,0 +1,46 @@
+lib/mission-palette.ts
+  6883b8a9b7fe4cba 4
+components/mission/milestone-gantt.tsx
+  6883b8a9b7fe4cba 3,13,18-19,31-37,45-46,48-52,65-76,83-138,140,158,166,170,175-177,185,187-216,240,249-250,278,306-340,358
+tests/unit/mission-narrative-page-content.test.ts
+  6883b8a9b7fe4cba 19-20
+tests/unit/mission-narrative-data.test.ts
+  6883b8a9b7fe4cba 31-34,54
+app/(marketing)/mission/data.ts
+  6883b8a9b7fe4cba 3-10,17,19,55,67-68,89-93,96-105,108-112,118-119,123-143,146-148,151-171,174-176,178-199,202-203,207-227,230-232,234-255,258-259,262-283,286-287,290-311
+components/mission/milestone-gantt-utils.ts
+  6883b8a9b7fe4cba 1,7-9,13,16-20,23-28,30-31,34,36-37,47-70,72-74,87-92,96-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "b17b53674215bba1709b61412477ae25754f05fa",
+  "prompts": {
+    "59356b7435f2a824": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "050a73c3-40fd-451b-89e8-fd43e32f8425",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 218,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "6883b8a9b7fe4cba": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "44d79c77-50f5-4197-b2bc-57dd7b34434a",
+        "model": "kimi-k2.6"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 486,
+      "total_deletions": 259,
+      "accepted_lines": 447,
+      "overriden_lines": 0
+    }
+  }
+}
