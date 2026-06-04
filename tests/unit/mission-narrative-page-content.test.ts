@@ -16,7 +16,8 @@ const marketingLayoutPath = new URL("../../app/(marketing)/layout.tsx", import.m
 describe("mission narrative f17 content contract", () => {
   it("keeps the original input prompt and orchestrator goal populated", () => {
     expect(originalUserPrompt.trim().length).toBeGreaterThan(0);
-    expect(originalUserPrompt).toContain("Applegreen Rewards 2.0");
+    expect(originalUserPrompt).toContain("applegreenstores.com");
+    expect(originalUserPrompt.toLowerCase()).toContain("loyalty");
     expect(orchestratorGoal.trim().length).toBeGreaterThan(0);
   });
 

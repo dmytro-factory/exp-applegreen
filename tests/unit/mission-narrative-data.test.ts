@@ -28,6 +28,10 @@ describe("mission narrative data contract", () => {
       expect(milestone.title).toBeTruthy();
       expect(milestone.summary).toBeTruthy();
       expect(milestone.durationMinutes).toBeGreaterThanOrEqual(0);
+      expect(milestone.phases.length).toBeGreaterThan(0);
+      expect(milestone.pushbackCount).toBe(
+        milestone.phases.reduce((sum, phase) => sum + phase.pushbackCount, 0),
+      );
 
       const startMs = Date.parse(milestone.start);
       const endMs = Date.parse(milestone.end);
@@ -47,6 +51,7 @@ describe("mission narrative data contract", () => {
     expect(MISSION_PHASE_COLORS.WORKER).toBe(brand.colors.primary);
     expect(MISSION_PHASE_COLORS.SCRUTINY).toBe(missionPalette.scrutiny);
     expect(MISSION_PHASE_COLORS["USER-TESTING"]).toBe(missionPalette.userTesting);
+    expect(MISSION_PHASE_COLORS.ORCHESTRATOR).toBe(missionPalette.orchestrator);
   });
 
   it("builds axis ticks that span the full mission timeline with at least three labels", () => {

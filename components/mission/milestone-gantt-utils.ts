@@ -1,23 +1,40 @@
-import type { MissionMilestone, MissionPhase } from "@/app/(marketing)/mission/data";
+import type { MissionMilestone, MissionPhase, MissionPhaseDetail } from "@/app/(marketing)/mission/data";
 import { brand } from "@/lib/brand";
 import { missionPalette } from "@/lib/mission-palette";
 
 const MINUTE_MS = 60_000;
 
-export const MISSION_PHASE_COLORS: Record<MissionPhase, string> = {
+export type GanttPhase = MissionPhase | "ORCHESTRATOR";
+
+export const MISSION_PHASE_COLORS: Record<GanttPhase, string> = {
   WORKER: brand.colors.primary,
   SCRUTINY: missionPalette.scrutiny,
   "USER-TESTING": missionPalette.userTesting,
+  ORCHESTRATOR: missionPalette.orchestrator,
 };
 
-export const MISSION_PHASE_LABELS: Record<MissionPhase, string> = {
-  WORKER: "WORKER",
-  SCRUTINY: "SCRUTINY",
-  "USER-TESTING": "USER-TESTING",
+export const MISSION_PHASE_LABELS: Record<GanttPhase, string> = {
+  WORKER: "Worker",
+  SCRUTINY: "Scrutiny Validator",
+  "USER-TESTING": "User-testing Validator",
+  ORCHESTRATOR: "Orchestrator",
 };
 
-export type MilestoneGanttDatum = MissionMilestone & {
+export type MilestoneGanttPhase = MissionPhaseDetail & {
   startOffsetMinutes: number;
+};
+
+export type OrchestratorSegment = {
+  phase: "ORCHESTRATOR";
+  startOffsetMinutes: number;
+  durationMinutes: number;
+  pushbackCount: 0;
+};
+
+export type MilestoneGanttDatum = Omit<MissionMilestone, "phases"> & {
+  startOffsetMinutes: number;
+  phases: MilestoneGanttPhase[];
+  orchestratorSegments: OrchestratorSegment[];
 };
 
 export type MilestoneGanttModel = {
@@ -26,6 +43,34 @@ export type MilestoneGanttModel = {
   timelineEndMs: number;
   totalDurationMinutes: number;
 };
+
+function buildOrchestratorSegments(
+  phases: MilestoneGanttPhase[],
+): OrchestratorSegment[] {
+  if (phases.length < 2) return [];
+
+  const sorted = [...phases].sort(
+    (a, b) => a.startOffsetMinutes - b.startOffsetMinutes,
+  );
+  const segments: OrchestratorSegment[] = [];
+
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const currentEnd = sorted[i].startOffsetMinutes + sorted[i].durationMinutes;
+    const nextStart = sorted[i + 1].startOffsetMinutes;
+    const gap = nextStart - currentEnd;
+
+    if (gap > 0.5) {
+      segments.push({
+        phase: "ORCHESTRATOR",
+        startOffsetMinutes: currentEnd,
+        durationMinutes: Math.round(gap * 10) / 10,
+        pushbackCount: 0,
+      });
+    }
+  }
+
+  return segments;
+}
 
 export function buildMilestoneGanttModel(milestones: MissionMilestone[]): MilestoneGanttModel {
   if (milestones.length === 0) {
@@ -39,15 +84,28 @@ export function buildMilestoneGanttModel(milestones: MissionMilestone[]): Milest
     };
   }
 
-  const timelineStartMs = Math.min(...milestones.map((milestone) => Date.parse(milestone.start)));
-  const timelineEndMs = Math.max(...milestones.map((milestone) => Date.parse(milestone.end)));
+  const timelineStartMs = Math.min(
+    ...milestones.map((milestone) => Math.min(...milestone.phases.map((phase) => Date.parse(phase.start)))),
+  );
+  const timelineEndMs = Math.max(
+    ...milestones.map((milestone) => Math.max(...milestone.phases.map((phase) => Date.parse(phase.end)))),
+  );
   const totalDurationMinutes = Math.max(1, (timelineEndMs - timelineStartMs) / MINUTE_MS);
   const rows = [...milestones]
     .sort((left, right) => Date.parse(left.start) - Date.parse(right.start))
-    .map((milestone) => ({
-      ...milestone,
-      startOffsetMinutes: (Date.parse(milestone.start) - timelineStartMs) / MINUTE_MS,
-    }));
+    .map((milestone) => {
+      const phases = milestone.phases.map((phase) => ({
+        ...phase,
+        startOffsetMinutes: (Date.parse(phase.start) - timelineStartMs) / MINUTE_MS,
+      }));
+
+      return {
+        ...milestone,
+        startOffsetMinutes: (Date.parse(milestone.start) - timelineStartMs) / MINUTE_MS,
+        phases,
+        orchestratorSegments: buildOrchestratorSegments(phases),
+      };
+    });
 
   return {
     rows,

@@ -1,14 +1,22 @@
 export type MissionPhase = "WORKER" | "SCRUTINY" | "USER-TESTING";
 
+export type MissionPhaseDetail = {
+  phase: MissionPhase;
+  start: string;
+  end: string;
+  durationMinutes: number;
+  pushbackCount: number;
+};
+
 export type MissionMilestone = {
   id: string;
   title: string;
   start: string;
   end: string;
   durationMinutes: number;
-  phase: MissionPhase;
-  pushbackCount: number;
+  phases: MissionPhaseDetail[];
   summary: string;
+  pushbackCount: number;
 };
 
 export type MissionWorker = {
@@ -44,7 +52,7 @@ export const missionSectionOrder = [
 ] as const;
 
 export const originalUserPrompt =
-  "Applegreen Rewards 2.0 — a Shell Go+ class loyalty experience for Ireland & UK. Pitch Applegreen on evolving their basic ROI-only \"Applegreen Rewards\" app into a Shell Go+ class loyalty platform for ROI + UK, with a unique road-trip / family / Parcelconnect angle. Demo runs entirely on your MacBook — Vercel site in the browser + PWA in iOS Simulator's Safari + real `.pkpass` in iOS Simulator's Wallet app. No Apple Developer account required.";
+  "Research applegreenstores.com to understand their services and retail footprint across Ireland and the UK. The goal is to build a loyalty application prototype, using Shell Go+ as a reference for what a petrol-station loyalty platform should feel like. The demo must be runnable locally on a MacBook (browser + iOS Simulator), produce a static marketing site about the mission with milestones and validator timeline, and ideally support real .pkpass cards stored in Apple Wallet on an iPhone — that is the North Star. Flag anything that is hard to achieve before committing to it. Everything should be styled in Apple Green's brand colours and visual identity.";
 
 export const orchestratorGoal =
   "Ship a mission narrative page that mirrors the snow-migration structure, proves each milestone outcome with evidence-ready sections, and keeps the marketing-to-mission path obvious for reviewers.";
@@ -56,8 +64,8 @@ export const workerValidatorExplainer = [
 ] as const;
 
 export const missionExecutionNotes = [
-  "The timeline now uses actual worker_completed timestamps from progress_log.jsonl across m1–m7 worker, scrutiny, and user-testing phases.",
-  "Validator pushback was concentrated in m3 user-testing, with 2 failed runs before the successful sealing pass.",
+  "The timeline aggregates worker, scrutiny, and user-testing phases under each milestone, matching the snow-migration Gantt style.",
+  "Validator pushback was concentrated in M3 PWA Loyalty user-testing, with 2 failed runs before the successful sealing pass.",
   "Session mapping for workers and validators comes directly from features.json workerSessionIds[] so each lane points at real mission sessions.",
 ] as const;
 
@@ -78,206 +86,229 @@ function minutesBetween(start: string, end: string): number {
   return Math.round((Date.parse(end) - Date.parse(start)) / MINUTE_MS);
 }
 
-function defineMilestone(milestone: Omit<MissionMilestone, "durationMinutes">): MissionMilestone {
+function definePhase(phase: Omit<MissionPhaseDetail, "durationMinutes">): MissionPhaseDetail {
+  return {
+    ...phase,
+    durationMinutes: minutesBetween(phase.start, phase.end),
+  };
+}
+
+function defineMilestone(
+  milestone: Omit<MissionMilestone, "durationMinutes" | "phases" | "pushbackCount"> & {
+    phases: Omit<MissionPhaseDetail, "durationMinutes">[];
+  },
+): MissionMilestone {
+  const phases = milestone.phases.map(definePhase);
+  const start = phases.length > 0 ? phases[0].start : milestone.start;
+  const end = phases.length > 0 ? phases[phases.length - 1].end : milestone.end;
+  const pushbackCount = phases.reduce((sum, phase) => sum + phase.pushbackCount, 0);
+
   return {
     ...milestone,
-    durationMinutes: minutesBetween(milestone.start, milestone.end),
+    phases,
+    start,
+    end,
+    durationMinutes: minutesBetween(start, end),
+    pushbackCount,
   };
 }
 
 export const milestones: MissionMilestone[] = [
   defineMilestone({
-    id: "m1-bootstrap-worker",
-    title: "M1 bootstrap worker build",
+    id: "m1",
+    title: "M1 Bootstrap",
     start: "2026-06-03T15:16:54.099Z",
-    end: "2026-06-03T15:26:09.501Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary:
-      "Completed f01-scaffold-and-brand-system, f02-github-repo-and-first-deploy with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m1-bootstrap-scrutiny",
-    title: "M1 bootstrap scrutiny review",
-    start: "2026-06-03T15:31:54.337Z",
-    end: "2026-06-03T15:31:54.337Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m1-bootstrap with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m1-bootstrap-user-testing",
-    title: "M1 bootstrap user-testing checks",
-    start: "2026-06-03T15:37:56.970Z",
     end: "2026-06-03T15:37:56.970Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m1-bootstrap with no validator pushbacks.",
+    summary:
+      "Scaffolded Next.js app, configured Apple Green brand system, and performed first Vercel deploy. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-03T15:16:54.099Z",
+        end: "2026-06-03T15:26:09.501Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-03T15:31:54.337Z",
+        end: "2026-06-03T15:31:54.337Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-03T15:37:56.970Z",
+        end: "2026-06-03T15:37:56.970Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m2-marketing-worker",
-    title: "M2 marketing worker build",
+    id: "m2",
+    title: "M2 Marketing",
     start: "2026-06-03T15:50:15.668Z",
-    end: "2026-06-03T16:16:28.551Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary:
-      "Completed f03-marketing-shell-and-hero, f04-marketing-problem-and-vision-sections, f05-marketing-try-it-and-tech-stack-sections with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m2-marketing-scrutiny",
-    title: "M2 marketing scrutiny review",
-    start: "2026-06-03T16:22:08.086Z",
-    end: "2026-06-03T16:22:08.086Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m2-marketing with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m2-marketing-user-testing",
-    title: "M2 marketing user-testing checks",
-    start: "2026-06-03T16:32:34.750Z",
     end: "2026-06-03T16:32:34.750Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m2-marketing with no validator pushbacks.",
+    summary:
+      "Built marketing landing page with hero, problem, vision, try-it-now and tech-stack sections. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-03T15:50:15.668Z",
+        end: "2026-06-03T16:16:28.551Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-03T16:22:08.086Z",
+        end: "2026-06-03T16:22:08.086Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-03T16:32:34.750Z",
+        end: "2026-06-03T16:32:34.750Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m3-pwa-loyalty-worker",
-    title: "M3 PWA loyalty worker build",
+    id: "m3",
+    title: "M3 PWA Loyalty",
     start: "2026-06-03T16:51:09.414Z",
-    end: "2026-06-03T20:16:31.537Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary:
-      "Completed f06-pwa-shell-and-onboarding, f07-pwa-home-screen, f08-pwa-earn-flow, f09-pwa-redeem-and-clubs with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m3-pwa-loyalty-scrutiny",
-    title: "M3 PWA loyalty scrutiny review",
-    start: "2026-06-03T21:47:52.098Z",
-    end: "2026-06-03T21:47:52.098Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m3-pwa-loyalty with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m3-pwa-loyalty-user-testing",
-    title: "M3 PWA loyalty user-testing checks",
-    start: "2026-06-03T22:24:18.069Z",
     end: "2026-06-03T22:28:13.995Z",
-    phase: "USER-TESTING",
-    pushbackCount: 2,
-    summary: "Sealed after 2 validator pushbacks while running user-testing-validator-m3-pwa-loyalty.",
-  }),
-  defineMilestone({
-    id: "m4-stations-and-roadtrip-worker",
-    title: "M4 stations & road trip worker build",
-    start: "2026-06-03T22:28:41.375Z",
-    end: "2026-06-03T23:00:13.706Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary: "Completed f10-station-locator, f11-road-trip-planner with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m4-stations-and-roadtrip-scrutiny",
-    title: "M4 stations & road trip scrutiny review",
-    start: "2026-06-03T23:05:38.479Z",
-    end: "2026-06-03T23:05:38.479Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m4-stations-and-roadtrip with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m4-stations-and-roadtrip-user-testing",
-    title: "M4 stations & road trip user-testing checks",
-    start: "2026-06-03T23:07:06.189Z",
-    end: "2026-06-03T23:25:16.422Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m4-stations-and-roadtrip with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m5-apple-wallet-worker",
-    title: "M5 Apple Wallet worker build",
-    start: "2026-06-03T23:27:23.065Z",
-    end: "2026-06-04T00:10:08.750Z",
-    phase: "WORKER",
-    pushbackCount: 0,
     summary:
-      "Completed f12-cert-generator-script, f13-wallet-pass-api-and-internals, f14-wallet-ctas-and-disclaimers, f15-wallet-production-env-and-redeploy with no validator pushbacks.",
+      "Built PWA loyalty flows — onboarding, home screen, earn, redeem, and clubs. User-testing required 2 pushbacks before seal.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-03T16:51:09.414Z",
+        end: "2026-06-03T20:16:31.537Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-03T21:47:52.098Z",
+        end: "2026-06-03T21:47:52.098Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-03T22:24:18.069Z",
+        end: "2026-06-03T22:28:13.995Z",
+        pushbackCount: 2,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m5-apple-wallet-scrutiny",
-    title: "M5 Apple Wallet scrutiny review",
-    start: "2026-06-04T00:12:14.627Z",
-    end: "2026-06-04T00:16:51.187Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m5-apple-wallet with no validator pushbacks.",
+    id: "m4",
+    title: "M4 Stations & Road Trip",
+    start: "2026-06-03T22:28:41.375Z",
+    end: "2026-06-03T23:25:16.422Z",
+    summary:
+      "Built station locator with real Ireland/UK data and road-trip planner with corridor routing. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-03T22:28:41.375Z",
+        end: "2026-06-03T23:00:13.706Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-03T23:05:38.479Z",
+        end: "2026-06-03T23:05:38.479Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-03T23:07:06.189Z",
+        end: "2026-06-03T23:25:16.422Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m5-apple-wallet-user-testing",
-    title: "M5 Apple Wallet user-testing checks",
-    start: "2026-06-04T00:20:28.658Z",
+    id: "m5",
+    title: "M5 Apple Wallet",
+    start: "2026-06-03T23:27:23.065Z",
     end: "2026-06-04T00:29:13.682Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m5-apple-wallet with no validator pushbacks.",
+    summary:
+      "Generated signing certificates, built wallet pass API, added CTAs and disclaimers, and configured production env. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-03T23:27:23.065Z",
+        end: "2026-06-04T00:10:08.750Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-04T00:12:14.627Z",
+        end: "2026-06-04T00:16:51.187Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-04T00:20:28.658Z",
+        end: "2026-06-04T00:29:13.682Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m6-mission-narrative-worker",
-    title: "M6 mission narrative worker build",
+    id: "m6",
+    title: "M6 Mission Narrative",
     start: "2026-06-04T00:35:46.140Z",
-    end: "2026-06-04T00:54:41.692Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary: "Completed f16-narrative-data-and-gantt, f17-narrative-sections-and-cards with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m6-mission-narrative-scrutiny",
-    title: "M6 mission narrative scrutiny review",
-    start: "2026-06-04T00:56:49.034Z",
-    end: "2026-06-04T00:56:49.034Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m6-mission-narrative with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m6-mission-narrative-user-testing",
-    title: "M6 mission narrative user-testing checks",
-    start: "2026-06-04T00:59:00.171Z",
     end: "2026-06-04T01:08:05.119Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m6-mission-narrative with no validator pushbacks.",
+    summary:
+      "Created mission narrative data model, built Gantt chart with Recharts, and added all sections and cards. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-04T00:35:46.140Z",
+        end: "2026-06-04T00:54:41.692Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-04T00:56:49.034Z",
+        end: "2026-06-04T00:56:49.034Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-04T00:59:00.171Z",
+        end: "2026-06-04T01:08:05.119Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
   defineMilestone({
-    id: "m7-polish-and-runbook-worker",
-    title: "M7 polish & runbook worker build",
+    id: "m7",
+    title: "M7 Polish & Runbook",
     start: "2026-06-04T01:10:47.943Z",
-    end: "2026-06-04T02:05:27.631Z",
-    phase: "WORKER",
-    pushbackCount: 0,
-    summary: "Completed f18-readme-and-demo-runbook, f19-final-polish-and-production-deploy with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m7-polish-and-runbook-scrutiny",
-    title: "M7 polish & runbook scrutiny review",
-    start: "2026-06-04T02:06:40.583Z",
-    end: "2026-06-04T02:06:40.583Z",
-    phase: "SCRUTINY",
-    pushbackCount: 0,
-    summary: "Completed scrutiny-validator-m7-polish-and-runbook with no validator pushbacks.",
-  }),
-  defineMilestone({
-    id: "m7-polish-and-runbook-user-testing",
-    title: "M7 polish & runbook user-testing checks",
-    start: "2026-06-04T02:09:14.670Z",
     end: "2026-06-04T02:09:14.670Z",
-    phase: "USER-TESTING",
-    pushbackCount: 0,
-    summary: "Completed user-testing-validator-m7-polish-and-runbook with no validator pushbacks.",
+    summary:
+      "Wrote README and demo runbook, applied final polish across marketing and PWA, and performed production deploy. Sealed with no validator pushbacks.",
+    phases: [
+      {
+        phase: "WORKER",
+        start: "2026-06-04T01:10:47.943Z",
+        end: "2026-06-04T02:05:27.631Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "SCRUTINY",
+        start: "2026-06-04T02:06:40.583Z",
+        end: "2026-06-04T02:06:40.583Z",
+        pushbackCount: 0,
+      },
+      {
+        phase: "USER-TESTING",
+        start: "2026-06-04T02:09:14.670Z",
+        end: "2026-06-04T02:09:14.670Z",
+        pushbackCount: 0,
+      },
+    ],
   }),
 ];
 
