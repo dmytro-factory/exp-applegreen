@@ -1,0 +1,39 @@
+app/app/wallet/page.tsx
+  1062cd746a5a9122 5,10,13-19,27-31
+lib/wallet/pass.ts
+  1062cd746a5a9122 7,15,50-58,97,123
+tests/unit/wallet-pass-builder.test.ts
+  1062cd746a5a9122 14-23
+tests/integration/wallet-pass-route.test.ts
+  1062cd746a5a9122 189,227,293-304
+lib/wallet/cta.ts
+  1062cd746a5a9122 1-58
+tests/unit/wallet-pass-cta.test.ts
+  1062cd746a5a9122 1-32
+components/marketing/try-it-now-section.tsx
+  1062cd746a5a9122 6-10,12,22,25-38,40-48,126
+app/api/wallet/pass/route.ts
+  1062cd746a5a9122 53
+lib/loyalty/storage.ts
+  1062cd746a5a9122 3,43-50,192,214
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "17ceb4983b7b019a69f62a2fdccbed6440e5758b",
+  "prompts": {
+    "1062cd746a5a9122": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "0f3ac05f-db3d-4b16-9fd5-74562ab8facc",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 231,
+      "total_deletions": 57,
+      "accepted_lines": 187,
+      "overriden_lines": 0
+    }
+  }
+}
