@@ -1,0 +1,23 @@
+components/brand/applegreen-logo.tsx
+  6883b8a9b7fe4cba 1,9-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "d3ca362efe45e30d46c399bf7e91e9b78665f737",
+  "prompts": {
+    "6883b8a9b7fe4cba": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "44d79c77-50f5-4197-b2bc-57dd7b34434a",
+        "model": "kimi-k2.6"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 13,
+      "total_deletions": 11,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
