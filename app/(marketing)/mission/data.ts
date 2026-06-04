@@ -44,7 +44,6 @@ export const missionSectionOrder = [
   "orchestrator-goal",
   "gantt",
   "milestone-breakdown",
-  "worker-validator-explainer",
   "sealed-milestones",
   "execution-notes",
   "tech-stack",

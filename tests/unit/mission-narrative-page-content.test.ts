@@ -7,7 +7,6 @@ import {
   originalUserPrompt,
   orchestratorGoal,
   techStackDependencies,
-  validators,
 } from "../../app/(marketing)/mission/data";
 
 const missionPagePath = new URL("../../app/(marketing)/mission/page.tsx", import.meta.url);
@@ -27,7 +26,6 @@ describe("mission narrative f17 content contract", () => {
       "orchestrator-goal",
       "gantt",
       "milestone-breakdown",
-      "worker-validator-explainer",
       "sealed-milestones",
       "execution-notes",
       "tech-stack",
@@ -47,11 +45,7 @@ describe("mission narrative f17 content contract", () => {
     missionExecutionNotes.forEach((note) => expect(note.trim().length).toBeGreaterThan(0));
   });
 
-  it("includes scrutiny and user-testing validators and required deliverable links", () => {
-    const validatorNames = validators.map((validator) => validator.name.toLowerCase());
-    expect(validatorNames).toContain("scrutiny-validator");
-    expect(validatorNames).toContain("user-testing-validator");
-
+  it("lists required deliverable links", () => {
     expect(deliverables.map((deliverable) => deliverable.label)).toEqual([
       "Marketing site",
       "PWA prototype",

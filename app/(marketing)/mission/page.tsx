@@ -7,9 +7,6 @@ import {
   originalUserPrompt,
   pushbackHighlights,
   techStackDependencies,
-  validators,
-  workerValidatorExplainer,
-  workers,
 } from "./data";
 
 const sectionClassName =
@@ -75,39 +72,6 @@ export default function MissionNarrativePage() {
               <p className="mt-3 text-sm leading-6 text-muted-foreground">{milestone.summary}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section id="worker-validator-explainer" className={`${sectionClassName} border-t`}>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Worker and validator pattern</h2>
-        <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
-          {workerValidatorExplainer.map((line) => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          <article className="rounded-2xl border border-border bg-card p-5">
-            <h3 className="text-base font-semibold text-foreground">Workers</h3>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              {workers.map((worker) => (
-                <li key={worker.id}>
-                  <span className="font-medium text-foreground">{worker.name}</span>: {worker.focus}
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="rounded-2xl border border-border bg-card p-5">
-            <h3 className="text-base font-semibold text-foreground">Validators</h3>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              {validators.map((validator) => (
-                <li key={validator.id}>
-                  <span className="font-medium text-foreground">{validator.name}</span>: {validator.focus}
-                </li>
-              ))}
-            </ul>
-          </article>
         </div>
       </section>
 
