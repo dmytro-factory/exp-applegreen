@@ -1,0 +1,23 @@
+components/marketing/in-page-nav.tsx
+  6883b8a9b7fe4cba 3,13-14,18,58,61-69,71,78,82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "912633aafe7c694b8c563e524e46445a907f0aae",
+  "prompts": {
+    "6883b8a9b7fe4cba": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "44d79c77-50f5-4197-b2bc-57dd7b34434a",
+        "model": "kimi-k2.6"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 12,
+      "accepted_lines": 17,
+      "overriden_lines": 0
+    }
+  }
+}
