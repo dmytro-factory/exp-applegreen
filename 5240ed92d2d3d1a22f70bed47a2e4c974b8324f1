@@ -1,0 +1,27 @@
+tests/unit/mission-narrative-page-content.test.ts
+  17b802c114ab4baa 18-19
+app/(marketing)/mission/data.ts
+  17b802c114ab4baa 47,59-61,90-93,96-97,101-103,105-106,110-112,115,118-121,123-125,129-131,133-134,137-143,146-149,151-153,156-168,171-244,247-253,256-259,262-278,280,286-349,351,353,356,358-378,384-408,411-412,414,417-453,456,459,467,485
+tests/unit/mission-narrative-data.test.ts
+  17b802c114ab4baa 30,34-35,58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "5240ed92d2d3d1a22f70bed47a2e4c974b8324f1",
+  "prompts": {
+    "17b802c114ab4baa": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "1e905283-bcd5-4775-9be0-2a640125cda0",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 333,
+      "total_deletions": 62,
+      "accepted_lines": 333,
+      "overriden_lines": 0
+    }
+  }
+}
