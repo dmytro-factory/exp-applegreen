@@ -124,6 +124,7 @@ export function TryItNowSection({ className }: { className: string }) {
 
           <a
             href={walletHref}
+            aria-label="Add to Apple Wallet"
             className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{ backgroundColor: brand.colors.primary, outlineColor: brand.colors.primary }}
           >

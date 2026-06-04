@@ -94,16 +94,25 @@ export function PwaShell({ children }: PwaShellProps) {
             >
               <ApplegreenLogo />
             </Link>
-            {hydrated && user && !isOnboardingRoute ? (
-              <button
-                type="button"
-                onClick={handleSignOut}
+            <div className="flex items-center gap-2">
+              <Link
+                href="/"
                 className="rounded-full border px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{ outlineColor: brand.colors.primary }}
               >
-                Sign out
-              </button>
-            ) : null}
+                Marketing
+              </Link>
+              {hydrated && user && !isOnboardingRoute ? (
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="rounded-full border px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  style={{ outlineColor: brand.colors.primary }}
+                >
+                  Sign out
+                </button>
+              ) : null}
+            </div>
           </div>
         </header>
 

@@ -58,7 +58,7 @@ export default function MissionNarrativePage() {
         <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground md:text-base">
           Timeline view of worker, scrutiny, and user-testing phases across the mission.
         </p>
-        <div className="mt-6" aria-label="Mission timeline chart section">
+        <div className="mt-6">
           <MilestoneGantt milestones={milestones} />
         </div>
       </section>

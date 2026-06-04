@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { brand } from "@/lib/brand";
 import { TechStackSection } from "@/components/marketing/tech-stack-section";
 import { TryItNowSection } from "@/components/marketing/try-it-now-section";
@@ -117,12 +118,11 @@ export default function MarketingPage() {
           {visionMockups.map((mockup) => (
             <article key={mockup.src} className="mx-auto w-full max-w-[280px] rounded-[2rem] border bg-white p-2 shadow-lg">
               <div className="overflow-hidden rounded-[1.65rem] border border-border bg-zinc-100">
-                <img
+                <Image
                   src={mockup.src}
                   alt={mockup.alt}
                   width={mockup.width}
                   height={mockup.height}
-                  loading="lazy"
                   className="h-auto w-full"
                 />
               </div>

@@ -3,7 +3,6 @@
 import { Baby, Dog, ExternalLink, PlugZap, ToyBrick } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { brand } from "@/lib/brand";
 import {
   ROAD_TRIP_FAMILY_FILTERS,
   buildGoogleMapsDeepLink,
@@ -127,7 +126,7 @@ export function RoadTripPlanner() {
           }}
           placeholder="e.g. Dublin"
           className="w-full rounded-xl border bg-white px-3 py-2 text-sm text-foreground outline-none transition-shadow focus-visible:ring-2"
-          style={{ borderColor: "rgb(212 212 216)", boxShadow: "none", caretColor: brand.colors.primary }}
+          style={{ borderColor: "rgb(212 212 216)", boxShadow: "none", caretColor: "var(--brand-primary)" }}
         />
 
         <label htmlFor="road-trip-to" className="block pt-1 text-sm font-medium text-foreground">
@@ -145,7 +144,7 @@ export function RoadTripPlanner() {
           }}
           placeholder="e.g. Galway"
           className="w-full rounded-xl border bg-white px-3 py-2 text-sm text-foreground outline-none transition-shadow focus-visible:ring-2"
-          style={{ borderColor: "rgb(212 212 216)", boxShadow: "none", caretColor: brand.colors.primary }}
+          style={{ borderColor: "rgb(212 212 216)", boxShadow: "none", caretColor: "var(--brand-primary)" }}
         />
 
         {validationMessage ? (

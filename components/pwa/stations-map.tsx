@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { icon, type LatLngBoundsExpression } from "leaflet";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import { brand } from "@/lib/brand";
+import { getBrandPrimaryHexForDataUrl } from "@/lib/brand";
 import {
   STATION_FILTER_CHIPS,
   STATIONS,
-  filterStationsByServices,
+  filterStations,
   getStationServiceLabels,
   type Station,
   type StationServiceKey,
@@ -18,10 +18,14 @@ const IRELAND_UK_BOUNDS: LatLngBoundsExpression = [
   [56.2, 2.1],
 ];
 
+// Leaflet marker icons are data URL images, so CSS vars (e.g. var(--brand-primary))
+// are not resolved inside the SVG document. Keep this tied to the single brand token.
+const STATION_MARKER_FILL_HEX = getBrandPrimaryHexForDataUrl();
+
 const stationMarkerIcon = icon({
   iconUrl: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 40">
-      <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 26 14 26s14-15.5 14-26C28 6.268 21.732 0 14 0z" fill="${brand.colors.primary}" />
+      <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 26 14 26s14-15.5 14-26C28 6.268 21.732 0 14 0z" fill="${STATION_MARKER_FILL_HEX}" />
       <circle cx="14" cy="14" r="6" fill="white" />
     </svg>
   `)}`,
@@ -36,7 +40,7 @@ export function StationsMap() {
   const [tilesUnavailable, setTilesUnavailable] = useState(false);
 
   const filteredStations = useMemo(
-    () => filterStationsByServices(STATIONS, activeFilters),
+    () => filterStations(STATIONS, activeFilters),
     [activeFilters],
   );
 
@@ -52,12 +56,17 @@ export function StationsMap() {
   }, [filteredStations, selectedStationId]);
 
   useEffect(() => {
+    if (tilesUnavailable) {
+      return;
+    }
+
     const interval = window.setInterval(() => {
       const brokenTile = Array.from(document.querySelectorAll<HTMLImageElement>(".leaflet-tile")).some(
         (tile) => tile.complete && tile.naturalWidth === 0,
       );
 
       if (brokenTile) {
+        window.clearInterval(interval);
         setTilesUnavailable(true);
       }
     }, 800);
@@ -65,7 +74,7 @@ export function StationsMap() {
     return () => {
       window.clearInterval(interval);
     };
-  }, []);
+  }, [tilesUnavailable]);
 
   const toggleFilter = (service: StationServiceKey) => {
     setActiveFilters((current) =>
@@ -159,18 +168,20 @@ export function StationsMap() {
 
       {selectedStation ? <StationDetailCard station={selectedStation} onClose={() => setSelectedStationId(null)} /> : null}
 
-      <section className="space-y-2" aria-label="Stations list fallback">
-        <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground">Stations list</h2>
-        <ul className="space-y-2">
-          {filteredStations.map((station) => (
-            <li key={`list-${station.id}`} className="rounded-xl border bg-card p-3">
-              <p className="text-sm font-semibold text-foreground">{station.name}</p>
-              <p className="text-sm text-muted-foreground">{station.address}</p>
-              <p className="mt-1 text-xs font-medium text-muted-foreground">{getStationServiceLabels(station).join(" · ")}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {tilesUnavailable ? (
+        <section className="space-y-2" aria-label="Stations list fallback">
+          <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground">Stations list</h2>
+          <ul className="space-y-2">
+            {filteredStations.map((station) => (
+              <li key={`list-${station.id}`} className="rounded-xl border bg-card p-3">
+                <p className="text-sm font-semibold text-foreground">{station.name}</p>
+                <p className="text-sm text-muted-foreground">{station.address}</p>
+                <p className="mt-1 text-xs font-medium text-muted-foreground">{getStationServiceLabels(station).join(" · ")}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </section>
   );
 }

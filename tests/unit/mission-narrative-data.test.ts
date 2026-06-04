@@ -12,6 +12,7 @@ import {
   buildMissionTickOffsets,
 } from "../../components/mission/milestone-gantt-utils";
 import { brand } from "../../lib/brand";
+import { missionPalette } from "../../lib/mission-palette";
 
 describe("mission narrative data contract", () => {
   it("exports milestones, workers, validators, and deliverables", () => {
@@ -44,8 +45,8 @@ describe("mission narrative data contract", () => {
 
   it("uses phase colors that keep worker on brand and supports all phase keys", () => {
     expect(MISSION_PHASE_COLORS.WORKER).toBe(brand.colors.primary);
-    expect(MISSION_PHASE_COLORS.SCRUTINY).toBeTruthy();
-    expect(MISSION_PHASE_COLORS["USER-TESTING"]).toBeTruthy();
+    expect(MISSION_PHASE_COLORS.SCRUTINY).toBe(missionPalette.scrutiny);
+    expect(MISSION_PHASE_COLORS["USER-TESTING"]).toBe(missionPalette.userTesting);
   });
 
   it("builds axis ticks that span the full mission timeline with at least three labels", () => {

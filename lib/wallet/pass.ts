@@ -1,14 +1,15 @@
 import { createHash } from "node:crypto";
-import { brand } from "../brand";
-import { ensureQrEncodable } from "../qr";
-import { tierFromPoints } from "../loyalty/storage";
+import { PARCELCONNECT_NOTIFICATION_COPY } from "@/lib/loyalty/home";
+import { tierFromPoints } from "@/lib/loyalty/storage";
+import { ensureQrEncodable } from "@/lib/qr";
+import { WalletPassConfigurationError } from "@/lib/wallet/certificates";
+import { brand } from "@/lib/brand";
 
 const DEFAULT_MEMBER_ID = "demo";
 const DEFAULT_MEMBER_NAME = "Guest Member";
 const DEFAULT_POINTS = 0;
 const DEFAULT_PASS_TYPE_IDENTIFIER = "pass.ie.applegreen.demo";
 const DEFAULT_TEAM_IDENTIFIER = "APPLEGREENDEMO";
-const PARCEL_BACKFIELD_COPY = "Parcel ready at Applegreen Naas Road";
 
 export type WalletPassInput = {
   memberId?: string | null;
@@ -47,7 +48,7 @@ function normalizePoints(points?: number): number {
   return Math.max(0, Math.round(points));
 }
 
-function normalizeMemberName(memberName?: string | null): string {
+function normalizeNameForPass(memberName?: string | null): string {
   const stripped = memberName?.trim() ?? "";
   if (!stripped) {
     return DEFAULT_MEMBER_NAME;
@@ -58,11 +59,15 @@ function normalizeMemberName(memberName?: string | null): string {
 
 function normalizePassTypeIdentifier(passTypeIdentifier?: string | null): string {
   const value = passTypeIdentifier?.trim();
-  if (value && value.startsWith("pass.")) {
-    return value;
+  if (!value) {
+    return DEFAULT_PASS_TYPE_IDENTIFIER;
   }
 
-  return DEFAULT_PASS_TYPE_IDENTIFIER;
+  if (!value.startsWith("pass.")) {
+    throw new WalletPassConfigurationError("Wallet pass not configured.");
+  }
+
+  return value;
 }
 
 function normalizeTeamIdentifier(teamIdentifier?: string | null): string {
@@ -94,7 +99,7 @@ export function createWalletBarcodeMessage(memberId: string): string {
 
 export function buildWalletPassJson(input: WalletPassInput, options: WalletPassOptions = {}) {
   const memberId = normalizeMemberId(input.memberId);
-  const memberName = normalizeMemberName(input.memberName);
+  const memberName = normalizeNameForPass(input.memberName);
   const points = normalizePoints(input.points);
   const tier = tierFromPoints(points);
   const barcodeMessage = createWalletBarcodeMessage(memberId);
@@ -107,9 +112,9 @@ export function buildWalletPassJson(input: WalletPassInput, options: WalletPassO
     organizationName: "Applegreen",
     description: "Applegreen loyalty rewards pass",
     logoText: "Applegreen Rewards",
-    foregroundColor: "rgb(255, 255, 255)",
+    foregroundColor: toRgbString(brand.colors.white),
     backgroundColor: toRgbString(brand.colors.primary),
-    labelColor: "rgb(255, 255, 255)",
+    labelColor: toRgbString(brand.colors.white),
     barcodes: [
       {
         format: "PKBarcodeFormatQR",
@@ -122,7 +127,7 @@ export function buildWalletPassJson(input: WalletPassInput, options: WalletPassO
       secondaryFields: [{ key: "tier", label: "TIER", value: tier }],
       auxiliaryFields: [{ key: "memberName", label: "MEMBER", value: memberName }],
       backFields: [
-        { key: "parcel", label: "Parcelconnect", value: PARCEL_BACKFIELD_COPY },
+        { key: "parcel", label: "Parcelconnect", value: PARCELCONNECT_NOTIFICATION_COPY },
       ],
     },
   };

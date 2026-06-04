@@ -1,12 +1,14 @@
 const DEFAULT_MEMBER_ID = "guest";
 const DEFAULT_MEMBER_NAME = "Guest Member";
+// Guests are identified by empty `name`, and must always request `points=0`.
+const WALLET_CTA_GUEST_OVERRIDE = 0;
 
 type WalletHrefInput = {
   name: string;
   points: number;
 } | null;
 
-function normalizeMemberName(name: string | null | undefined): string {
+function normalizeNameForQuery(name: string | null | undefined): string {
   if (typeof name !== "string") {
     return "";
   }
@@ -23,7 +25,7 @@ function normalizePoints(points: number | null | undefined): number {
 }
 
 export function createWalletMemberId(name: string | null | undefined): string {
-  const normalizedName = normalizeMemberName(name);
+  const normalizedName = normalizeNameForQuery(name);
 
   if (!normalizedName) {
     return DEFAULT_MEMBER_ID;
@@ -45,13 +47,17 @@ export function createWalletMemberId(name: string | null | undefined): string {
 }
 
 export function buildWalletPassHref(input: WalletHrefInput): string {
-  const name = normalizeMemberName(input?.name);
+  /**
+   * Invariant: an empty name always means guest mode, and guest mode must never
+   * emit non-zero points in the wallet query string.
+   */
+  const name = normalizeNameForQuery(input?.name);
   const points = normalizePoints(input?.points);
 
   const params = new URLSearchParams({
     member: createWalletMemberId(name),
     name: name || DEFAULT_MEMBER_NAME,
-    points: String(name ? points : 0),
+    points: String(name ? points : WALLET_CTA_GUEST_OVERRIDE),
   });
 
   return `/api/wallet/pass?${params.toString()}`;

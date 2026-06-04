@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   STATION_FILTER_CHIPS,
   STATIONS,
-  filterStationsByServices,
+  filterStations,
   getStationServiceLabels,
   type StationServiceKey,
 } from "../../lib/stations";
@@ -25,18 +25,18 @@ describe("stations locator contracts", () => {
 
   it("applies a single filter chip to narrow stations", () => {
     const expected = STATIONS.filter((station) => station.services.ev).length;
-    expect(filterStationsByServices(STATIONS, ["ev"]).length).toBe(expected);
+    expect(filterStations(STATIONS, ["ev"]).length).toBe(expected);
   });
 
   it("composes multiple filters with AND semantics", () => {
     const filters: StationServiceKey[] = ["ev", "familyFriendly"];
     const expected = STATIONS.filter((station) => filters.every((filter) => station.services[filter])).length;
 
-    expect(filterStationsByServices(STATIONS, filters).length).toBe(expected);
+    expect(filterStations(STATIONS, filters).length).toBe(expected);
   });
 
   it("clearing filters restores the full baseline", () => {
-    expect(filterStationsByServices(STATIONS, []).length).toBe(STATIONS.length);
+    expect(filterStations(STATIONS, []).length).toBe(STATIONS.length);
   });
 
   it("exposes detail-card service labels and real-seeming seed text", () => {

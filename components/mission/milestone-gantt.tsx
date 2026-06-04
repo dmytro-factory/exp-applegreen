@@ -49,7 +49,7 @@ function MilestoneBarShape({
   patternId,
 }: MilestoneBarShapeProps) {
   const pushbackCount = payload?.pushbackCount ?? 0;
-  const showBadge = pushbackCount > 0 && width >= 48;
+  const showBadge = pushbackCount > 0 && width >= 24;
   const badgeSize = Math.min(height - 4, 18);
   const badgeX = x + width - badgeSize - 4;
   const badgeY = y + (height - badgeSize) / 2;
@@ -98,6 +98,12 @@ function MilestoneBarShape({
 
 const phaseLegendOrder: MissionPhase[] = ["WORKER", "SCRUTINY", "USER-TESTING"];
 
+type MissionTooltipPayloadEntry = {
+  dataKey?: string;
+  payload?: MissionMilestone;
+  value?: number;
+};
+
 export function MilestoneGantt({ milestones, className }: MilestoneGanttProps) {
   const chartPatternId = useId().replace(/:/g, "");
 
@@ -142,51 +148,65 @@ export function MilestoneGantt({ milestones, className }: MilestoneGanttProps) {
               margin={{ top: 12, right: 32, bottom: 20, left: 8 }}
               barCategoryGap={14}
             >
-            <defs>
-              <pattern
-                id={chartPatternId}
-                width="8"
-                height="8"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="3" />
-              </pattern>
-            </defs>
+              <defs>
+                <pattern
+                  id={chartPatternId}
+                  width="8"
+                  height="8"
+                  patternUnits="userSpaceOnUse"
+                  patternTransform="rotate(45)"
+                >
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="3" />
+                </pattern>
+              </defs>
 
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(148, 163, 184, 0.35)" />
-            <XAxis
-              type="number"
-              domain={[0, model.totalDurationMinutes]}
-              ticks={tickOffsets}
-              tickFormatter={(offset) => formatMissionTickLabel(model.timelineStartMs, Number(offset))}
-              axisLine={{ stroke: "rgba(148, 163, 184, 0.6)" }}
-              tickLine={false}
-              tick={{ fontSize: 12, fill: "rgb(100 116 139)" }}
-              minTickGap={20}
-            />
-            <YAxis
-              dataKey="title"
-              type="category"
-              width={220}
-              tickLine={false}
-              axisLine={false}
-              tick={{ fontSize: 12, fill: "rgb(30 41 59)" }}
-              interval={0}
-            />
-            <Tooltip
-              cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
-              formatter={(value) => [`${value} min`, "Duration"]}
-              labelFormatter={(label, payload) => {
-                const row = payload?.[0]?.payload as MissionMilestone | undefined;
+              <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(148, 163, 184, 0.35)" />
+              <XAxis
+                type="number"
+                domain={[0, model.totalDurationMinutes]}
+                ticks={tickOffsets}
+                tickFormatter={(offset) => formatMissionTickLabel(model.timelineStartMs, Number(offset))}
+                axisLine={{ stroke: "rgba(148, 163, 184, 0.6)" }}
+                tickLine={false}
+                tick={{ fontSize: 12, fill: "rgb(100 116 139)" }}
+                minTickGap={20}
+              />
+              <YAxis
+                dataKey="title"
+                type="category"
+                width={220}
+                tickLine={false}
+                axisLine={false}
+                tick={{ fontSize: 12, fill: "rgb(30 41 59)" }}
+                interval={0}
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
+                content={({ active, payload, label }) => {
+                  const tooltipPayload = payload as readonly MissionTooltipPayloadEntry[] | undefined;
+                  const visibleRows = tooltipPayload?.filter(
+                    (entry) => entry.dataKey !== "startOffsetMinutes" && typeof entry.value === "number",
+                  );
 
-                if (!row) {
-                  return String(label);
-                }
+                  if (!active || !visibleRows || visibleRows.length === 0) {
+                    return null;
+                  }
 
-                return `${row.title} · ${formatMissionDateTime(row.start)} → ${formatMissionDateTime(row.end)}`;
-              }}
-            />
+                  const row = visibleRows[0];
+                  const milestone = row.payload;
+                  const durationValue = Number(row.value);
+                  const heading = milestone
+                    ? `${milestone.title} · ${formatMissionDateTime(milestone.start)} → ${formatMissionDateTime(milestone.end)}`
+                    : String(label);
+
+                  return (
+                    <div className="rounded-lg border border-border bg-white px-3 py-2 text-xs shadow-sm">
+                      <p className="font-semibold text-foreground">{heading}</p>
+                      <p className="mt-1 text-muted-foreground">Duration: {durationValue} min</p>
+                    </div>
+                  );
+                }}
+              />
 
               <Bar
                 dataKey="startOffsetMinutes"

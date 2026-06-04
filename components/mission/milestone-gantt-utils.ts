@@ -1,12 +1,13 @@
-import type { MissionMilestone, MissionPhase } from "../../app/(marketing)/mission/data";
-import { brand } from "../../lib/brand";
+import type { MissionMilestone, MissionPhase } from "@/app/(marketing)/mission/data";
+import { brand } from "@/lib/brand";
+import { missionPalette } from "@/lib/mission-palette";
 
 const MINUTE_MS = 60_000;
 
 export const MISSION_PHASE_COLORS: Record<MissionPhase, string> = {
   WORKER: brand.colors.primary,
-  SCRUTINY: "#D97706",
-  "USER-TESTING": "#2563EB",
+  SCRUTINY: missionPalette.scrutiny,
+  "USER-TESTING": missionPalette.userTesting,
 };
 
 export const MISSION_PHASE_LABELS: Record<MissionPhase, string> = {

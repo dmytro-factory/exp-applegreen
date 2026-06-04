@@ -1,4 +1,4 @@
-import stationsSeed from "../data/stations.json";
+import stationsSeed from "@/data/stations.json";
 
 export const STATION_FILTERS = [
   { id: "fuel", label: "Fuel" },
@@ -37,20 +37,19 @@ const SERVICE_LABELS: Record<StationFilter, string> = {
 
 export const STATIONS = stationsSeed as Station[];
 
-export function filterStations(stations: Station[], activeFilters: Set<StationFilter>): Station[] {
-  if (activeFilters.size === 0) {
+export function filterStations(
+  stations: Station[],
+  activeFilters: ReadonlyArray<StationServiceKey> | ReadonlySet<StationServiceKey>,
+): Station[] {
+  const normalizedFilters: StationServiceKey[] = Array.isArray(activeFilters)
+    ? [...activeFilters]
+    : Array.from(activeFilters);
+
+  if (normalizedFilters.length === 0) {
     return stations;
   }
 
-  return stations.filter((station) => Array.from(activeFilters).every((filter) => station.services[filter]));
-}
-
-export function filterStationsByServices(stations: Station[], activeFilters: StationServiceKey[]): Station[] {
-  if (activeFilters.length === 0) {
-    return stations;
-  }
-
-  return stations.filter((station) => activeFilters.every((filter) => station.services[filter]));
+  return stations.filter((station) => normalizedFilters.every((filter) => station.services[filter]));
 }
 
 export function getStationById(id: string): Station | undefined {

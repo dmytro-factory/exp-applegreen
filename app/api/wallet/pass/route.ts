@@ -4,8 +4,8 @@ import { PKPass } from "passkit-generator";
 import {
   loadWalletPassCertificates,
   WalletPassConfigurationError,
-} from "../../../../lib/wallet/certificates";
-import { buildWalletPassJson } from "../../../../lib/wallet/pass";
+} from "@/lib/wallet/certificates";
+import { buildWalletPassJson } from "@/lib/wallet/pass";
 
 export const runtime = "nodejs";
 
@@ -83,6 +83,12 @@ export async function GET(request: Request) {
   } catch (error) {
     if (error instanceof WalletPassConfigurationError) {
       return walletNotConfiguredResponse();
+    }
+
+    if (error instanceof Error) {
+      console.error(`${error.name}: ${error.message}`);
+    } else {
+      console.error(`UnknownError: ${String(error)}`);
     }
 
     return Response.json(

@@ -17,4 +17,12 @@ export const brand = {
   },
 } as const;
 
+/**
+ * SVG data URLs are rendered as external image sources and cannot consume CSS variables like
+ * `var(--brand-primary)`. Keep these carve-outs anchored to the single brand token source.
+ */
+export function getBrandPrimaryHexForDataUrl(): string {
+  return brand.colors.primary;
+}
+
 export type Brand = typeof brand;

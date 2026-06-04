@@ -1,4 +1,4 @@
-import corridorSeed from "../data/road-trip-corridors.json";
+import corridorSeed from "@/data/road-trip-corridors.json";
 
 export const ROAD_TRIP_FAMILY_FILTERS = [
   { id: "kids", label: "Kids", ariaLabel: "Kids play area available" },

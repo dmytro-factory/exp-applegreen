@@ -64,6 +64,10 @@ export default function RedeemPage() {
 
   const pointsBalance = user?.points ?? 0;
   const maxFuelRedeemPoints = useMemo(() => getMaxFuelRedeemPoints(pointsBalance), [pointsBalance]);
+  const fuelRedeemSliderMax = useMemo(
+    () => Math.max(maxFuelRedeemPoints, FUEL_REDEEM_MIN_POINTS),
+    [maxFuelRedeemPoints],
+  );
   const canRedeemFuel = useMemo(() => isFuelRedeemAvailable(pointsBalance), [pointsBalance]);
   const selectedCentsOff = useMemo(() => calculateFuelDiscountCents(fuelRedeemPoints), [fuelRedeemPoints]);
 
@@ -186,7 +190,7 @@ export default function RedeemPage() {
           <input
             type="range"
             min={FUEL_REDEEM_MIN_POINTS}
-            max={maxFuelRedeemPoints}
+            max={fuelRedeemSliderMax}
             step={FUEL_REDEEM_STEP_POINTS}
             value={fuelRedeemPoints}
             disabled={!canRedeemFuel}
