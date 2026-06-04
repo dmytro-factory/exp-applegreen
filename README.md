@@ -1,50 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Applegreen Rewards 2.0 Demo
 
 ## Setup
 
-Install dependencies and generate local Apple Wallet cert env values:
+### Prerequisites
+
+- Node.js 26+
+- `pnpm` 10+
+- Xcode + iOS Simulator (for Wallet install demo steps)
+
+### Environment variables
+
+Copy `.env.example` to `.env.local` and keep those variable names in sync:
+
+```bash
+cp .env.example .env.local
+```
+
+The cert generator fills `.env.local` values for:
+`PASS_CERT_B64`, `PASS_KEY_B64`, `WWDR_B64`, and `PASS_KEY_PASSPHRASE`.
+
+> `scripts/generate-cert.ts` resolves `.env.local` from `process.cwd()`, so run cert commands from the repository root.
+
+### Install / run / test / build
 
 ```bash
 pnpm install
-cp .env.example .env.local # if .env.local does not exist yet
-pnpm run generate:cert
-# or directly:
-pnpm tsx scripts/generate-cert.ts
+pnpm dev
+pnpm test
+pnpm build
 ```
 
-The cert generator writes fresh `PASS_CERT_B64`, `PASS_KEY_B64`, `WWDR_B64`, and `PASS_KEY_PASSPHRASE` values into `.env.local` and prints them to stdout so they can be copied to deployment env vars.
+### Cert generator
 
-## Getting Started
-
-First, run the development server:
+Use either command below (from repo root):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm generate:cert
+pnpm exec tsx scripts/generate-cert.ts
 ```
 
-Open [http://localhost:3100](http://localhost:3100) with your browser to see the result.
+## Demo Runbook
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Open iOS Simulator and launch Safari.
+2. Scan the QR code (or type the URL) to open this demo on the current origin.
+3. Tap Add to Apple Wallet to download the pass from `/api/wallet/pass`.
+4. Choose Install / Add in Wallet to finish the Simulator flow.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+xcrun simctl pkpass add <pkpass-path-or-booted>
+```
 
-## Learn More
+5. Walk the PWA flow:
+   - Earn points in `/app/earn`
+   - Redeem in `/app/redeem`
+   - Open `/app/wallet` and download the pass again
+6. Confirm Wallet updates:
+   - points and tier shown in the pass reflect your latest in-app balance
+   - the pass remains Simulator-only (self-signed; real iPhones reject it)
 
-To learn more about Next.js, take a look at the following resources:
+## Phase-2 callout (production wallet rollout)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Register an official Apple Pass Type ID and signing certificates.
+- Enable APNs live updates for pass refreshes and status changes.
+- Add NFC payload support for forecourt and in-store tap flows.
+- Ship a Google Wallet pass alongside Apple Wallet for platform parity.
