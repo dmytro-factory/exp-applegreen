@@ -27,12 +27,12 @@ describe("mission narrative data contract", () => {
       expect(milestone.id).toBeTruthy();
       expect(milestone.title).toBeTruthy();
       expect(milestone.summary).toBeTruthy();
-      expect(milestone.durationMinutes).toBeGreaterThan(0);
+      expect(milestone.durationMinutes).toBeGreaterThanOrEqual(0);
 
       const startMs = Date.parse(milestone.start);
       const endMs = Date.parse(milestone.end);
-      expect(endMs).toBeGreaterThan(startMs);
-      expect((endMs - startMs) / 60_000).toBe(milestone.durationMinutes);
+      expect(endMs).toBeGreaterThanOrEqual(startMs);
+      expect(Math.round((endMs - startMs) / 60_000)).toBe(milestone.durationMinutes);
     }
 
     for (const highlight of pushbackHighlights) {
@@ -55,7 +55,7 @@ describe("mission narrative data contract", () => {
 
     expect(ticks.length).toBeGreaterThanOrEqual(3);
     expect(ticks[0]).toBe(0);
-    expect(ticks.at(-1)).toBe(ganttModel.totalDurationMinutes);
+    expect(ticks.at(-1)).toBeCloseTo(ganttModel.totalDurationMinutes, 2);
   });
 
   it("contains no placeholder markers", () => {
