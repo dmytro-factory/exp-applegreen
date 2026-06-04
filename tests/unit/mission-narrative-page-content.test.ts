@@ -30,6 +30,7 @@ describe("mission narrative f17 content contract", () => {
       "execution-notes",
       "tech-stack",
       "deliverables",
+      "phase-two",
     ]);
   });
 

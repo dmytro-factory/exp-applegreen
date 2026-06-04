@@ -48,6 +48,7 @@ export const missionSectionOrder = [
   "execution-notes",
   "tech-stack",
   "deliverables",
+  "phase-two",
 ] as const;
 
 export const originalUserPrompt =

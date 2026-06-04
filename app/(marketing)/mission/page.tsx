@@ -124,6 +124,45 @@ export default function MissionNarrativePage() {
           ))}
         </div>
       </section>
+
+      <section id="phase-two" className={`${sectionClassName} border-t`}>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Phase Two</h2>
+        <p className="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground md:text-base">
+          Items that need to go through before a full production rollout.
+        </p>
+        <ul className="mt-6 grid gap-4 md:grid-cols-2">
+          <li className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground">Apple Pass Type ID</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Register an official Pass Type ID with Apple and switch from demo .pkpass files to real Apple Wallet passes that update live points balances via push notifications.
+            </p>
+          </li>
+          <li className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground">User database</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Move from localStorage mock profiles to a real backend database for member accounts, transaction history, and points reconciliation.
+            </p>
+          </li>
+          <li className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground">POS integration</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Wire the loyalty flows into actual points-of-sale: coffee purchases, fuel payments, and in-store transactions so points are earned and redeemed in real time.
+            </p>
+          </li>
+          <li className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground">Polish UX</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Run a dedicated Figma pass over the PWA and marketing site for micro-interactions, accessibility, and iOS-native feel before App Store review.
+            </p>
+          </li>
+          <li className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground">Production infrastructure</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Set up monitoring, rate limiting, and a proper Apple Developer account for production signing certificates and Wallet push services.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

@@ -9,7 +9,6 @@ export const marketingPageMap: MarketingSection[] = [
   { id: "vision", label: "Vision" },
   { id: "try-it-now", label: "Try it now" },
   { id: "live-prototype", label: "Live prototype" },
-  { id: "mission-narrative", label: "Mission narrative" },
   { id: "tech-stack", label: "Tech stack" },
 ];
 
