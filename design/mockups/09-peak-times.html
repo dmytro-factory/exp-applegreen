@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>09 Peak times</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .peak-title { font-size: 22px; font-weight: 700; margin: 18px 16px 8px; }
+  .chart { position: relative; height: 520px; padding: 16px 14px 0; display: flex; align-items: flex-end; gap: 4px; }
+  .bar { flex: 1; background: var(--accent); border-radius: 3px 3px 0 0; }
+  .bar.now { background: var(--primary); }
+  .axis { display: flex; justify-content: space-between; padding: 8px 16px 0; color: var(--muted); font-size: 13px; border-top: 1px solid var(--hairline); margin: 0 14px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Newport Pagnell South 1</span>
+    <span class="nav-side right">
+      <span class="icon-btn"><i data-lucide="message-square-warning" class="i-22"></i></span>
+      <span class="icon-btn"><i data-lucide="navigation" class="i-22"></i></span>
+    </span>
+  </div>
+
+  <div class="screen">
+    <div class="peak-title">Peak Charging Times</div>
+    <div class="chart">
+      <div class="bar" style="height:4%"></div>
+      <div class="bar" style="height:7%"></div>
+      <div class="bar" style="height:12%"></div>
+      <div class="bar" style="height:18%"></div>
+      <div class="bar" style="height:26%"></div>
+      <div class="bar" style="height:40%"></div>
+      <div class="bar" style="height:55%"></div>
+      <div class="bar" style="height:68%"></div>
+      <div class="bar" style="height:82%"></div>
+      <div class="bar" style="height:90%"></div>
+      <div class="bar" style="height:95%"></div>
+      <div class="bar" style="height:98%"></div>
+      <div class="bar" style="height:94%"></div>
+      <div class="bar" style="height:88%"></div>
+      <div class="bar now" style="height:64%"></div>
+      <div class="bar" style="height:50%"></div>
+      <div class="bar" style="height:38%"></div>
+      <div class="bar" style="height:30%"></div>
+      <div class="bar" style="height:22%"></div>
+      <div class="bar" style="height:16%"></div>
+      <div class="bar" style="height:11%"></div>
+      <div class="bar" style="height:8%"></div>
+      <div class="bar" style="height:6%"></div>
+      <div class="bar" style="height:4%"></div>
+    </div>
+    <div class="axis">
+      <span>06</span><span>10</span><span>14</span><span>18</span><span>22</span><span>02</span>
+    </div>
+  </div>
+
+  <div class="subtabs">
+    <div class="tab"><i data-lucide="plug" class="i-24"></i>Connectors</div>
+    <div class="tab"><i data-lucide="clipboard-list" class="i-24"></i>Details</div>
+    <div class="tab"><i data-lucide="map" class="i-24"></i>Map</div>
+    <div class="tab active"><i data-lucide="history" class="i-24"></i>Peak Time</div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

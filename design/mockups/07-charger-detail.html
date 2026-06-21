@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>07 Charger detail - Connectors</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .connector-card { margin-bottom: 18px; }
+  .connector-card .title-row { display: flex; align-items: center; gap: 8px; margin: 12px 0 10px; }
+  .connector-card .title-row h3 { margin: 0; font-size: 20px; font-weight: 700; }
+  .connector-card .price { color: var(--muted); font-size: 15px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Newport Pagnell North 1</span>
+    <span class="nav-side right">
+      <span class="icon-btn"><i data-lucide="message-square-warning" class="i-22"></i></span>
+      <span class="icon-btn"><i data-lucide="navigation" class="i-22"></i></span>
+    </span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="card connector-card">
+        <span class="badge">Available</span>
+        <div class="title-row"><i data-lucide="plug-zap" class="i-22" style="color:var(--accent)"></i><h3>CCS A</h3></div>
+        <div class="spec-row"><span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 360kW</span></div>
+        <div class="price">£0.78/kWh</div>
+      </div>
+
+      <div class="card connector-card">
+        <span class="badge">Available</span>
+        <div class="title-row"><i data-lucide="plug-zap" class="i-22" style="color:var(--accent)"></i><h3>CCS B</h3></div>
+        <div class="spec-row"><span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 360kW</span></div>
+        <div class="price">£0.78/kWh</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtabs">
+    <div class="tab active"><i data-lucide="plug" class="i-24"></i>Connectors</div>
+    <div class="tab"><i data-lucide="clipboard-list" class="i-24"></i>Details</div>
+    <div class="tab"><i data-lucide="map" class="i-24"></i>Map</div>
+    <div class="tab"><i data-lucide="history" class="i-24"></i>Peak Time</div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

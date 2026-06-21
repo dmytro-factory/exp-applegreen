@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>06 Site detail</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .site-sub { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px; background: var(--app-bg); }
+  .site-sub .addr { color: var(--ink-subtle); font-size: 15px; line-height: 20px; margin: 0; }
+  .site-sub .dist { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .site-sub .dist sup { font-size: 11px; }
+  .charger-card { margin-bottom: 16px; }
+  .charger-card .title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .charger-card .title-row h3 { margin: 0; font-size: 18px; font-weight: 700; }
+  .charger-card .title-row svg { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Newport Pagnell South</span>
+    <span class="nav-side right">
+      <span class="icon-circle"><i data-lucide="heart" class="i-18"></i></span>
+      <span class="icon-circle"><i data-lucide="navigation" class="i-18"></i></span>
+    </span>
+  </div>
+
+  <div class="site-sub">
+    <p class="addr">Welcome Break Newport Pagnell (Milton Keynes) M1, Newport Pagnell, Buckinghamshire, United Kingdom</p>
+    <span class="dist">253<sup>Ft</sup></span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="card charger-card">
+        <div class="title-row"><i data-lucide="square-stack" class="i-18"></i><h3>Newport Pagnell South 1</h3></div>
+        <div class="spec-row">
+          <span><i data-lucide="plug-zap" class="i-18" style="color:var(--accent);vertical-align:middle"></i> Combo CCS</span>
+          <span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 360kW</span>
+          <span>2 Available</span>
+        </div>
+        <div class="spec-row" style="margin-top:6px">£0.78/kWh</div>
+      </div>
+
+      <div class="card charger-card">
+        <div class="title-row"><i data-lucide="square-stack" class="i-18"></i><h3>Newport Pagnell South 2</h3></div>
+        <div class="spec-row">
+          <span><i data-lucide="plug-zap" class="i-18" style="color:var(--accent);vertical-align:middle"></i> Combo CCS</span>
+          <span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 360kW</span>
+          <span>1 Available</span>
+        </div>
+        <div class="spec-row" style="margin-top:6px">£0.78/kWh</div>
+      </div>
+
+      <div class="card charger-card">
+        <div class="title-row"><i data-lucide="square-stack" class="i-18"></i><h3>Newport Pagnell South 3</h3></div>
+        <div class="spec-row">
+          <span><i data-lucide="plug-zap" class="i-18" style="color:var(--accent);vertical-align:middle"></i> Combo CCS</span>
+          <span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 175kW</span>
+          <span>1 Available</span>
+        </div>
+        <div class="spec-row" style="margin-top:6px">£0.78/kWh</div>
+      </div>
+
+      <div class="card charger-card">
+        <div class="title-row"><i data-lucide="square-stack" class="i-18"></i><h3>Newport Pagnell South 4</h3></div>
+        <div class="spec-row">
+          <span><i data-lucide="plug-zap" class="i-18" style="color:var(--accent);vertical-align:middle"></i> Combo CCS</span>
+          <span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 175kW</span>
+          <span style="color:var(--muted-light)">In use</span>
+        </div>
+        <div class="spec-row" style="margin-top:6px">£0.78/kWh</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+id,name,operator,network,address,country,currency,lat,lng,coffee,fuel,food,shop
+np-north,Newport Pagnell North,Welcome Break,Applegreen Electric,"Welcome Break Newport Pagnell (Milton Keynes) M1 Northbound J14-15, Newport Pagnell, Buckinghamshire, United Kingdom",UK,GBP,52.0871,-0.7289,true,true,true,true
+np-south,Newport Pagnell South,Welcome Break,Applegreen Electric,"Welcome Break Newport Pagnell (Milton Keynes) M1 Southbound J14-15, Newport Pagnell, Buckinghamshire, United Kingdom",UK,GBP,52.0836,-0.7312,true,true,true,true
+south-mimms,South Mimms,Welcome Break,Applegreen Electric,"Bignells Corner, M25 J23, Potters Bar, Hertfordshire, United Kingdom",UK,GBP,51.6951,-0.2301,true,true,true,true
+london-gateway,London Gateway,Welcome Break,Applegreen Electric,"M1 between J2 and J4, Mill Hill, London, United Kingdom",UK,GBP,51.6149,-0.2389,true,true,true,true
+newark,Newark,Welcome Break,Applegreen Electric,"A1 Northbound, Newark-on-Trent, Nottinghamshire, United Kingdom",UK,GBP,53.0901,-0.8442,true,true,true,false
+leicester-forest-east,Leicester Forest East,Welcome Break,Applegreen Electric,"M1 between J21 and J21a, Leicester, Leicestershire, United Kingdom",UK,GBP,52.6106,-1.2352,true,true,true,true
+membury,Membury,Welcome Break,Applegreen Electric,"M4 between J14 and J15, Lambourn Woodlands, Berkshire, United Kingdom",UK,GBP,51.4744,-1.5197,true,true,true,true
+keele,Keele,Welcome Break,Applegreen Electric,"M6 between J15 and J16, Newcastle-under-Lyme, Staffordshire, United Kingdom",UK,GBP,53.0086,-2.2761,true,true,true,true
+charnock-richard,Charnock Richard,Welcome Break,Applegreen Electric,"M6 between J27 and J28, Chorley, Lancashire, United Kingdom",UK,GBP,53.6347,-2.6618,true,true,true,true
+corley,Corley,Welcome Break,Applegreen Electric,"M6 between J3 and J4, Coventry, Warwickshire, United Kingdom",UK,GBP,52.4793,-1.5366,true,true,true,false
+hopwood-park,Hopwood Park,Welcome Break,Applegreen Electric,"M42 J2, Redditch Road, Alvechurch, Birmingham, United Kingdom",UK,GBP,52.3727,-1.9802,true,true,true,true
+oxford,Oxford,Welcome Break,Applegreen Electric,"M40 J8A, Waterstock, Oxfordshire, United Kingdom",UK,GBP,51.7415,-1.2404,true,true,true,true
+warwick-north,Warwick North,Welcome Break,Applegreen Electric,"M40 between J12 and J13 Northbound, Warwick, Warwickshire, United Kingdom",UK,GBP,52.2772,-1.6057,true,true,true,false
+warwick-south,Warwick South,Welcome Break,Applegreen Electric,"M40 between J12 and J13 Southbound, Warwick, Warwickshire, United Kingdom",UK,GBP,52.2718,-1.6021,true,true,true,false
+gretna-green,Gretna Green,Welcome Break,Applegreen Electric,"A74(M) J22, Gretna, Dumfries and Galloway, United Kingdom",UK,GBP,55.0068,-3.0664,true,true,true,true
+birchanger-green,Birchanger Green,Welcome Break,Applegreen Electric,"M11 J8, Stansted, Bishop's Stortford, Essex, United Kingdom",UK,GBP,51.8736,0.1989,true,true,true,true
+gordano,Gordano,Welcome Break,Applegreen Electric,"M5 J19, Portbury, Bristol, United Kingdom",UK,GBP,51.4628,-2.7256,true,true,true,true
+fleet,Fleet,Welcome Break,Applegreen Electric,"M3 between J4a and J5, Fleet, Hampshire, United Kingdom",UK,GBP,51.2783,-0.8447,true,true,true,true
+michaelwood,Michaelwood,Welcome Break,Applegreen Electric,"M5 between J13 and J14, Berkeley, Gloucestershire, United Kingdom",UK,GBP,51.6789,-2.3553,true,true,true,false
+telford,Telford,Welcome Break,Applegreen Electric,"M54 J4, Telford, Shropshire, United Kingdom",UK,GBP,52.6710,-2.3760,true,true,true,true
+ie-birdhill,Applegreen Birdhill,Applegreen,Applegreen Electric,"M7 Birdhill Service Area, Birdhill, Co. Tipperary, Ireland",IE,EUR,52.7668,-8.4395,true,true,true,true
+ie-enfield-east,Applegreen Enfield Eastbound,Applegreen,Applegreen Electric,"M4 Motorway, Johnstown, Enfield, Co. Meath, Ireland",IE,EUR,53.4147,-6.8392,true,true,true,true
+ie-kinnegad,Applegreen Kinnegad Plaza,Applegreen,Applegreen Electric,"M6 Junction 1, Kinnegad, Co. Westmeath, Ireland",IE,EUR,53.4522,-7.1032,true,true,true,true
+ie-castlebellingham-north,Applegreen Castlebellingham North,Applegreen,Applegreen Electric,"M1 Northbound, Castlebellingham, Co. Louth, Ireland",IE,EUR,53.9026,-6.3927,true,true,true,true
+ie-castlebellingham-south,Applegreen Castlebellingham South,Applegreen,Applegreen Electric,"M1 Southbound, Castlebellingham, Co. Louth, Ireland",IE,EUR,53.9009,-6.3958,true,true,true,true
+ie-lusk-north,Applegreen Lusk North,Applegreen,Applegreen Electric,"M1 Northbound, Lusk, Co. Dublin, Ireland",IE,EUR,53.5386,-6.1634,true,true,true,true
+ie-gorey,Applegreen Gorey,Applegreen,Applegreen Electric,"M11 Junction 23, Gorey, Co. Wexford, Ireland",IE,EUR,52.6798,-6.2924,true,true,true,true
+ie-athlone,Applegreen Athlone,Applegreen,Applegreen Electric,"Dublin Road, Athlone, Co. Westmeath, Ireland",IE,EUR,53.4278,-7.9393,true,true,true,false
+ie-clondrinagh,Applegreen Clondrinagh,Applegreen,Applegreen Electric,"R445 Ennis Road, Clondrinagh, Limerick, Ireland",IE,EUR,52.6817,-8.6631,true,true,true,false
+ie-ballinasloe,Applegreen Ballinasloe,Applegreen,Applegreen Electric,"M6 Ballinasloe Service Area, Co. Galway, Ireland",IE,EUR,53.3271,-8.2207,true,true,true,false

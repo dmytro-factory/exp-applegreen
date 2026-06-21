@@ -1,15 +1,18 @@
 export const brand = {
-  name: "Applegreen",
+  name: "Applegreen Fast Charge",
   sampledFrom: {
-    url: "https://applegreenstores.com/wp-content/themes/applegreen-clickworks/dist/styles/main1.css",
-    notes: "Hex values sampled from live CSS via curl on 2026-06-03",
+    url: "App Store screenshots v9.1.14 and live iPhone Mirroring captures (recon/)",
+    notes: "Teal charging palette sampled from the Fast Charge app on 2026-06-21",
   },
   colors: {
-    primary: "#659A27",
-    accent: "#6E9D36",
-    dark: "#35570E",
+    primary: "#006551",
+    primaryHover: "#00543F",
+    accent: "#62A60E",
+    dark: "#00402F",
+    badgeBg: "#BBDECB",
+    appBg: "#EEF2FE",
     white: "#FFFFFF",
-    ink: "#1F2817",
+    ink: "#1A1A1A",
   },
   fonts: {
     base: "Inter",

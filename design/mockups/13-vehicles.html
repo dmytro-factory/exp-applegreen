@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>13 My Vehicles</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .vehicle { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 16px; margin-bottom: 14px; }
+  .vehicle .top { display: flex; align-items: center; gap: 14px; }
+  .vehicle .ic { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .vehicle .ic.ev { background: #e8f4d8; color: var(--accent-dark); }
+  .vehicle .ic.ice { background: #eef1f6; color: var(--ink-subtle); }
+  .vehicle h3 { margin: 0; font-size: 18px; }
+  .vehicle .reg { display: inline-block; margin-top: 4px; background: #ffd400; color: #1a1a1a; font-weight: 700; font-size: 13px; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; }
+  .vehicle .spec { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .vehicle .spec .kv { display: flex; align-items: center; gap: 6px; }
+  .default-badge { margin-left: auto; }
+  .add-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 1.5px dashed var(--primary); color: var(--primary); border-radius: var(--r-card); padding: 16px; font-weight: 600; font-size: 16px; background: transparent; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">My Vehicles</span>
+    <span class="nav-side right"></span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="vehicle">
+        <div class="top">
+          <div class="ic ev"><i data-lucide="car-front" class="i-26"></i></div>
+          <div>
+            <h3>Tesla Model Y</h3>
+            <span class="reg">YE73 EVX</span>
+          </div>
+          <span class="badge default-badge">Default</span>
+        </div>
+        <div class="spec">
+          <span class="kv"><i data-lucide="plug" class="i-16"></i> CCS (Combo)</span>
+          <span class="kv"><i data-lucide="battery-charging" class="i-16"></i> Up to 250kW</span>
+          <span class="kv"><i data-lucide="zap" class="i-16"></i> 75 kWh</span>
+        </div>
+      </div>
+
+      <div class="vehicle">
+        <div class="top">
+          <div class="ic ice"><i data-lucide="car" class="i-26"></i></div>
+          <div>
+            <h3>VW Golf TSI</h3>
+            <span class="reg">YA19 PTL</span>
+          </div>
+        </div>
+        <div class="spec">
+          <span class="kv"><i data-lucide="fuel" class="i-16"></i> Petrol</span>
+          <span class="kv"><i data-lucide="gauge" class="i-16"></i> 45L tank</span>
+          <span class="kv">Earns fuel points</span>
+        </div>
+      </div>
+
+      <button class="add-btn"><i data-lucide="plus" class="i-20"></i> Add a vehicle</button>
+    </div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

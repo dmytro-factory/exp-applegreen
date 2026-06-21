@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>08 Start charge + in progress</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .summary-card .title-row { display: flex; align-items: center; gap: 8px; margin: 12px 0 8px; }
+  .summary-card .title-row h3 { margin: 0; font-size: 20px; font-weight: 700; }
+  .summary-card .ln { font-size: 16px; color: var(--ink); margin: 2px 0; }
+  .summary-card .price { color: var(--muted); font-size: 15px; margin-top: 8px; }
+  .steps { padding: 24px 4px; }
+  .steps p { font-size: 17px; letter-spacing: 0.3px; margin: 0 0 10px; color: var(--ink); }
+  .start-dock { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 16px 28px; text-align: center; }
+  .swipe-btn {
+    position: relative; background: var(--primary); color: #fff; border-radius: 999px;
+    height: 64px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 600; box-shadow: var(--shadow-fab);
+  }
+  .swipe-btn .knob {
+    position: absolute; left: 6px; width: 52px; height: 52px; border-radius: 999px;
+    background: #fff; color: var(--primary); display: flex; align-items: center; justify-content: center;
+  }
+  .start-dock .cs { margin-top: 16px; }
+
+  /* in-progress */
+  .ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 28px; }
+  .ring {
+    width: 220px; height: 220px; border-radius: 999px;
+    background: conic-gradient(var(--accent) 0% 62%, #e6ecf6 62% 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ring .inner {
+    width: 176px; height: 176px; border-radius: 999px; background: var(--app-bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+  .ring .pct { font-size: 44px; font-weight: 700; color: var(--ink); }
+  .ring .lbl { font-size: 14px; color: var(--muted); }
+  .charging-pill { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-dark); font-weight: 600; margin-top: 14px; }
+  .stats { display: flex; justify-content: space-around; margin-top: 26px; }
+  .stats .stat { text-align: center; }
+  .stats .stat .v { font-size: 22px; font-weight: 700; }
+  .stats .stat .k { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .stop-dock { position: absolute; left: 16px; right: 16px; bottom: 28px; }
+  .btn-stop { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); border-radius: 999px; padding: 16px; width: 100%; font-size: 17px; font-weight: 600; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- State A: Start charge -->
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">CCS A</span>
+    <span class="nav-side right">
+      <span class="icon-btn"><i data-lucide="message-square-warning" class="i-22"></i></span>
+      <span class="icon-btn"><i data-lucide="navigation" class="i-22"></i></span>
+    </span>
+  </div>
+  <div class="screen">
+    <div class="scroll">
+      <div class="card summary-card">
+        <span class="badge">Available</span>
+        <div class="title-row"><i data-lucide="plug-zap" class="i-22" style="color:var(--accent)"></i><h3>CCS A</h3></div>
+        <div class="ln">Site: Newport Pagnell North</div>
+        <div class="ln">Charger: Newport Pagnell North 1</div>
+        <div class="spec-row" style="margin-top:10px"><span class="energy"><i data-lucide="zap" class="i-16"></i> Up to 360kW</span></div>
+        <div class="price">£0.78/kWh</div>
+      </div>
+      <div class="steps">
+        <p>1. CONNECT CABLE</p>
+        <p>2. SWIPE TO CHARGE</p>
+      </div>
+    </div>
+    <div class="start-dock">
+      <div class="swipe-btn">
+        <span class="knob"><i data-lucide="chevron-right" class="i-26"></i></span>
+        Connect &amp; Swipe To Start
+      </div>
+      <div class="cs"><a class="link">Call customer service</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- State B: Charging in progress -->
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:43</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Charging</span>
+    <span class="nav-side right"></span>
+  </div>
+  <div class="screen">
+    <div class="scroll center">
+      <div class="ring-wrap">
+        <div class="ring"><div class="inner"><span class="pct">62%</span><span class="lbl">Battery</span></div></div>
+        <div class="charging-pill"><i data-lucide="zap" class="i-18"></i> Charging at 178 kW</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="v">24.8</div><div class="k">kWh</div></div>
+        <div class="stat"><div class="v">12:30</div><div class="k">Time</div></div>
+        <div class="stat"><div class="v">£19.34</div><div class="k">Cost</div></div>
+      </div>
+      <p class="muted small mt-24">Newport Pagnell North 1 · CCS A · £0.78/kWh</p>
+    </div>
+    <div class="stop-dock"><div class="btn-stop">Stop charging</div></div>
+  </div>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

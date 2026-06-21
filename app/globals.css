@@ -56,7 +56,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #659a27;
+  --primary: #006551;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -67,7 +67,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: #6e9d36;
+  --ring: #006551;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -82,9 +82,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --brand-primary: #659a27;
-  --brand-accent: #6e9d36;
-  --brand-dark: #35570e;
+  --brand-primary: #006551;
+  --brand-accent: #62a60e;
+  --brand-dark: #00402f;
+  --brand-badge-bg: #bbdecb;
+  --brand-app-bg: #eef2fe;
 }
 
 .dark {

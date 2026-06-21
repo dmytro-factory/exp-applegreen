@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10 Profile</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .section-label { color: var(--muted); font-size: 13px; font-weight: 600; margin: 18px 0 2px; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 0; }
+  .toggle-row.bordered { border-bottom: 1px solid var(--hairline); }
+  .toggle-row .lbl { font-size: 16px; font-weight: 600; }
+  .sub-card { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 4px 16px; margin: 4px 0 8px; }
+  .sub-card .toggle-row .lbl { font-weight: 700; }
+  .sub-card .desc { font-size: 13px; color: var(--muted); margin: -8px 0 0; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Profile</span>
+    <span class="nav-side right">Save</span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="section-label">Personal Information</div>
+      <div class="field"><label>First Name*</label></div>
+      <div class="field"><label>Last Name*</label></div>
+      <div class="field"><label>Email*</label></div>
+      <div class="field"><label>Mobile Phone*</label></div>
+      <div class="field with-value"><label>Language*</label><span class="value">English <i data-lucide="chevron-right" class="i-18"></i></span></div>
+
+      <div class="toggle-row">
+        <span class="lbl">I would like to receive marketing updates.</span>
+        <span class="toggle"></span>
+      </div>
+
+      <div class="sub-card">
+        <div class="toggle-row"><span class="lbl">SMS</span><span class="toggle"></span></div>
+        <p class="desc">Receive offers and updates via SMS.</p>
+        <div class="toggle-row" style="margin-top:8px"><span class="lbl">Email</span><span class="toggle"></span></div>
+        <p class="desc">Get newsletters and promotional emails.</p>
+        <div class="toggle-row" style="margin-top:8px"><span class="lbl">Push notifications</span><span class="toggle"></span></div>
+        <p class="desc">Receive push notifications about offers.</p>
+      </div>
+
+      <div class="toggle-row bordered">
+        <span class="lbl">I agree to the <span class="link">Privacy Policy</span> and <span class="link">Terms</span>*</span>
+        <span class="toggle partial"></span>
+      </div>
+
+      <div class="section-label">Billing Address</div>
+      <div class="field with-value"><label>Country*</label><span class="value">United Kingdom <i data-lucide="chevron-right" class="i-18"></i></span></div>
+    </div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

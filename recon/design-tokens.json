@@ -1,0 +1,110 @@
+{
+  "$meta": {
+    "name": "Applegreen Fast Charge - design tokens",
+    "source": "Sampled from App Store screenshots v9.1.14 (recon/appstore) and live iPhone Mirroring captures.",
+    "updated": "2026-06-21",
+    "note": "Single source of truth for the faithful clone. Hex values are the canonical brand tokens agreed in the plan."
+  },
+  "color": {
+    "primary": "#006551",
+    "primaryHover": "#00543F",
+    "primaryDark": "#00402F",
+    "accent": "#62A60E",
+    "accentDark": "#4F8A0B",
+    "availabilityBadgeBg": "#BBDECB",
+    "availabilityBadgeText": "#006551",
+    "appBg": "#EEF2FE",
+    "card": "#FFFFFF",
+    "ink": "#1A1A1A",
+    "inkSubtle": "#3D3D3D",
+    "muted": "#6B7280",
+    "mutedLight": "#9CA3AF",
+    "hairline": "#E3E7F2",
+    "energyYellow": "#F4B400",
+    "link": "#006551",
+    "white": "#FFFFFF",
+    "statusbarText": "#FFFFFF",
+    "chartBar": "#62A60E",
+    "chartBarActive": "#006551",
+    "disabled": "#A9C4BB"
+  },
+  "typography": {
+    "fontFamily": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    "scale": {
+      "caption": { "size": 12, "lineHeight": 16, "weight": 400 },
+      "small": { "size": 14, "lineHeight": 20, "weight": 400 },
+      "body": { "size": 16, "lineHeight": 22, "weight": 400 },
+      "bodyStrong": { "size": 16, "lineHeight": 22, "weight": 600 },
+      "subtitle": { "size": 18, "lineHeight": 24, "weight": 600 },
+      "title": { "size": 22, "lineHeight": 28, "weight": 700 },
+      "display": { "size": 28, "lineHeight": 34, "weight": 700 }
+    },
+    "navTitle": { "size": 17, "weight": 600 },
+    "superscriptUnit": { "size": 11, "weight": 400 }
+  },
+  "radius": {
+    "card": 16,
+    "chip": 22,
+    "pill": 999,
+    "badge": 8,
+    "input": 10,
+    "fab": 999
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 20,
+    "2xl": 24,
+    "screenPadding": 16
+  },
+  "elevation": {
+    "card": "0 6px 16px rgba(20, 32, 60, 0.08)",
+    "fab": "0 4px 12px rgba(0, 64, 47, 0.35)",
+    "bottomSheet": "0 -6px 24px rgba(20, 32, 60, 0.12)"
+  },
+  "layout": {
+    "device": "iPhone 15 / 14 Pro",
+    "frame": { "width": 393, "height": 852 },
+    "statusBarHeight": 54,
+    "headerHeight": 96,
+    "tabBarHeight": 84,
+    "safeAreaBottom": 34
+  },
+  "iconLibrary": "lucide-react",
+  "iconMap": {
+    "search": "Search",
+    "tabMap": "Map",
+    "tabList": "List",
+    "tabRewards": "Gift",
+    "tabProfile": "User",
+    "navigate": "Navigation",
+    "favourite": "Heart",
+    "favouriteFilled": "Heart (filled)",
+    "charger": "PlugZap",
+    "bolt": "Zap",
+    "back": "ChevronLeft",
+    "forward": "ChevronRight",
+    "chevronDown": "ChevronDown",
+    "locate": "LocateFixed",
+    "filter": "SlidersHorizontal",
+    "help": "HelpCircle",
+    "connectors": "Plug",
+    "details": "ClipboardList",
+    "peakTime": "History",
+    "report": "MessageSquareWarning",
+    "phone": "Phone",
+    "coffee": "Coffee",
+    "fuel": "Fuel",
+    "vehicleEv": "CarFront",
+    "vehicleIce": "Car",
+    "tier": "Award",
+    "redeem": "Ticket",
+    "email": "Mail",
+    "password": "Lock",
+    "eye": "Eye",
+    "swipeArrow": "ChevronRight",
+    "checkmark": "Check"
+  }
+}

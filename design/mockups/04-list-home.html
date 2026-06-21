@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>04 List / Home</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <div class="wordmark">
+      <svg class="leaf" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="17.5" r="13" fill="#62a60e" />
+        <path d="M15 4c.5 5.5 3 9.5 8 11.5C21.5 9.5 19 5.5 15 4z" fill="#fff" />
+        <path d="M15 4c-3 1.5-5 4-5 7 0 4.5 3.5 8 9 8.5C16 14 14.5 9 15 4z" fill="#cdeaa6" />
+      </svg>
+      <span class="name"><b>applegreen</b> <span>fast charge</span></span>
+    </div>
+    <span class="icon-btn"><i data-lucide="search" class="i-24"></i></span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <!-- Nearest -->
+      <div class="section-head"><h2>Nearest</h2><span class="view-all">View all</span></div>
+      <div class="h-rail">
+        <div class="card station-card">
+          <div class="dist">272<sup>Ft</sup></div>
+          <div class="title-row"><i data-lucide="building-2" class="i-18"></i><h3>Newport Pagnell North</h3></div>
+          <p class="addr">Welcome Break Newport Pagnell (Milton Keynes) M1, Buckingham...</p>
+          <div class="avail"><i data-lucide="plug-zap" class="i-20"></i> 16/16</div>
+          <div class="card-actions">
+            <span class="pill"><i data-lucide="navigation" class="i-18"></i> Navigate</span>
+            <span class="pill"><i data-lucide="heart" class="i-18"></i> Favourite</span>
+          </div>
+        </div>
+        <div class="card station-card">
+          <div class="dist">380<sup>Ft</sup></div>
+          <div class="title-row"><i data-lucide="building-2" class="i-18"></i><h3>Newport Pagnell South</h3></div>
+          <p class="addr">Welcome Break Newport Pagnell (Milton Keynes) M1...</p>
+          <div class="avail"><i data-lucide="plug-zap" class="i-20"></i> 11/16</div>
+        </div>
+      </div>
+
+      <!-- Favourites -->
+      <div class="section-head" style="margin-top:20px"><h2>Favourites</h2><span class="view-all">View all</span></div>
+      <div class="h-rail">
+        <div class="card station-card">
+          <div class="dist">35.46<sup>mi</sup></div>
+          <div class="title-row"><i data-lucide="building-2" class="i-18"></i><h3>South Mimms 7-14</h3></div>
+          <p class="addr">Bignells Corner, Potters Bar, Hertfordshire, United Kingdom</p>
+          <div class="avail"><i data-lucide="plug-zap" class="i-20"></i> 7/16</div>
+          <div class="card-actions">
+            <span class="pill"><i data-lucide="navigation" class="i-18"></i> Navigate</span>
+            <span class="pill selected"><i data-lucide="heart" class="i-18" fill="currentColor"></i> Favourite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent -->
+      <div class="section-head" style="margin-top:20px"><h2>Recent</h2><span class="view-all">View all</span></div>
+      <div class="h-rail">
+        <div class="card station-card">
+          <div class="dist">66.73<sup>mi</sup></div>
+          <div class="title-row"><i data-lucide="building-2" class="i-18"></i><h3>Newark</h3></div>
+          <p class="addr">A1 Slip Road / B6326, Newark, United Kingdom</p>
+          <div class="avail"><i data-lucide="plug-zap" class="i-20"></i> 5/6</div>
+          <div class="card-actions">
+            <span class="pill"><i data-lucide="navigation" class="i-18"></i> Navigate</span>
+            <span class="pill"><i data-lucide="heart" class="i-18"></i> Favourite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab"><i data-lucide="map" class="i-24"></i>Map</div>
+    <div class="tab active"><i data-lucide="list" class="i-24"></i>List</div>
+    <div class="tab"><i data-lucide="gift" class="i-24"></i>Rewards</div>
+    <div class="tab"><span class="avatar">FL</span>Profile</div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

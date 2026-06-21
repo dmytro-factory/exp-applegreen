@@ -118,6 +118,20 @@ export function filterRoadTripStopsByBadges(stops: RoadTripStop[], activeBadges:
   return stops.filter((stop) => activeBadges.every((badge) => stop.badges.includes(badge)));
 }
 
+export function buildGoogleMapsDirectionsLink(lat: number, lng: number): string {
+  const mapsUrl = new URL("https://www.google.com/maps/dir/");
+  mapsUrl.searchParams.set("api", "1");
+  mapsUrl.searchParams.set("destination", `${lat},${lng}`);
+  return mapsUrl.toString();
+}
+
+export function buildWazeDirectionsLink(lat: number, lng: number): string {
+  const wazeUrl = new URL("https://www.waze.com/ul");
+  wazeUrl.searchParams.set("ll", `${lat},${lng}`);
+  wazeUrl.searchParams.set("navigate", "yes");
+  return wazeUrl.toString();
+}
+
 export function buildGoogleMapsDeepLink(origin: string, destination: string, waypoints: string[]): string {
   const mapsUrl = new URL("https://www.google.com/maps/dir/");
 

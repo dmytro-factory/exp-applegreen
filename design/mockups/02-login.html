@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>02 Login</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .login { padding: 8px 24px 24px; display: flex; flex-direction: column; height: 100%; }
+  .login .top { display: flex; justify-content: flex-end; }
+  .login .brand { display: flex; flex-direction: column; align-items: center; gap: 14px; margin: 28px 0 36px; }
+  .login .brand .wm { font-size: 24px; color: var(--primary); letter-spacing: -0.4px; }
+  .login .brand .wm b { font-weight: 700; }
+  .login .brand .wm span { font-weight: 300; }
+  .login h1 { font-size: 26px; font-weight: 700; margin: 0 0 22px; }
+  .login .input { margin-bottom: 16px; justify-content: space-between; }
+  .login .input .lead { display: flex; align-items: center; gap: 10px; }
+  .login .forgot { text-align: right; margin: -4px 0 26px; }
+  .login .guest { text-align: center; margin-top: auto; padding-top: 24px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-light">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+  <div class="login">
+    <div class="top"><a class="link-plain">Create account</a></div>
+    <div class="brand">
+      <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="17.5" r="13" fill="#62a60e" />
+        <path d="M15 4c.5 5.5 3 9.5 8 11.5C21.5 9.5 19 5.5 15 4z" fill="#fff" />
+        <path d="M15 4c-3 1.5-5 4-5 7 0 4.5 3.5 8 9 8.5C16 14 14.5 9 15 4z" fill="#cdeaa6" />
+      </svg>
+      <div class="wm"><b>applegreen</b> <span>fast charge</span></div>
+    </div>
+
+    <h1>Log in</h1>
+
+    <div class="input">
+      <span class="lead"><i data-lucide="mail" class="i-20"></i> Email</span>
+    </div>
+    <div class="input">
+      <span class="lead"><i data-lucide="lock" class="i-20"></i> Password</span>
+      <i data-lucide="eye" class="i-20"></i>
+    </div>
+    <a class="link-plain forgot">Forgot password?</a>
+
+    <button class="btn-primary">Log in</button>
+
+    <div class="guest"><a class="link">Continue as guest</a></div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

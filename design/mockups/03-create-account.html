@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>03 Create account - Account Details</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .section-label { color: var(--muted); font-size: 13px; font-weight: 600; text-transform: none; margin: 18px 0 2px; }
+  .hint { color: var(--muted); font-size: 13px; line-height: 18px; margin-top: 8px; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--hairline); }
+  .toggle-row .lbl { font-size: 16px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Account Details</span>
+    <span class="nav-side right">Next</span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="field"><label>First Name*</label></div>
+      <div class="field"><label>Last Name*</label></div>
+
+      <div class="toggle-row">
+        <span class="lbl">I am a business customer</span>
+        <span class="toggle off"></span>
+      </div>
+
+      <div class="field"><label>Email*</label></div>
+      <div class="field"><label>Mobile Phone*</label></div>
+      <p class="hint">We'll contact you via text for verification and other purposes related to your account.</p>
+
+      <div class="section-label">SECURITY</div>
+      <div class="field">
+        <label>Password*</label>
+        <div class="placeholder">8+ chars, 1 uppercase, 1 number</div>
+      </div>
+      <div class="field"><label>Confirm Password*</label></div>
+
+      <div class="toggle-row">
+        <span class="lbl">I agree to the <span class="link">Privacy Policy</span> and <span class="link">Terms</span>*</span>
+        <span class="toggle off"></span>
+      </div>
+      <div class="toggle-row">
+        <span class="lbl">I would like to receive marketing updates.</span>
+        <span class="toggle off"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

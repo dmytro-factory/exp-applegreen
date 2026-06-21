@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>12 Activity history</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .day-label { color: var(--muted); font-size: 13px; font-weight: 600; margin: 16px 2px 8px; }
+  .activity { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 14px 16px; margin-bottom: 12px; }
+  .activity .ic { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .activity .ic.charge { background: #e8f4d8; color: var(--accent-dark); }
+  .activity .ic.coffee { background: #f3e9df; color: #8a5a2b; }
+  .activity .ic.fuel { background: var(--badge-bg); color: var(--primary); }
+  .activity .body { flex: 1; }
+  .activity h4 { margin: 0; font-size: 16px; }
+  .activity .meta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .activity .right { text-align: right; }
+  .activity .pts { color: var(--accent-dark); font-weight: 700; font-size: 15px; }
+  .activity .spend { color: var(--muted); font-size: 13px; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-side"><i data-lucide="chevron-left" class="i-24"></i> Back</span>
+    <span class="nav-title">Activity</span>
+    <span class="nav-side right"></span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="day-label">Today</div>
+      <div class="activity">
+        <div class="ic charge"><i data-lucide="plug-zap" class="i-24"></i></div>
+        <div class="body"><h4>EV charge · Newport Pagnell N</h4><div class="meta">24.8 kWh · CCS A · 12:30</div></div>
+        <div class="right"><div class="pts">+248</div><div class="spend">£19.34</div></div>
+      </div>
+      <div class="activity">
+        <div class="ic coffee"><i data-lucide="coffee" class="i-24"></i></div>
+        <div class="body"><h4>Bewley's latte</h4><div class="meta">Newport Pagnell North · 09:12</div></div>
+        <div class="right"><div class="pts">+50</div><div class="spend">£3.40</div></div>
+      </div>
+
+      <div class="day-label">Yesterday</div>
+      <div class="activity">
+        <div class="ic fuel"><i data-lucide="fuel" class="i-24"></i></div>
+        <div class="body"><h4>Unleaded petrol · 38L</h4><div class="meta">Applegreen Birch · 18:05</div></div>
+        <div class="right"><div class="pts">+190</div><div class="spend">£52.20</div></div>
+      </div>
+      <div class="activity">
+        <div class="ic charge"><i data-lucide="plug-zap" class="i-24"></i></div>
+        <div class="body"><h4>EV charge · South Mimms</h4><div class="meta">41.2 kWh · CCS B · 07:48</div></div>
+        <div class="right"><div class="pts">+412</div><div class="spend">£32.14</div></div>
+      </div>
+
+      <div class="day-label">Earlier this week</div>
+      <div class="activity">
+        <div class="ic coffee"><i data-lucide="coffee" class="i-24"></i></div>
+        <div class="body"><h4>Flat white</h4><div class="meta">Applegreen Lusk North · Mon 08:30</div></div>
+        <div class="right"><div class="pts">+50</div><div class="spend">£3.60</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

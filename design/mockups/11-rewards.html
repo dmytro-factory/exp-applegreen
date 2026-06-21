@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>11 Rewards home</title>
+<link rel="stylesheet" href="tokens.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  .points-card {
+    background: linear-gradient(135deg, #006551 0%, #00402f 100%);
+    color: #fff; border-radius: 20px; padding: 22px; box-shadow: var(--shadow-card);
+  }
+  .points-card .tier { display: inline-flex; align-items: center; gap: 6px; background: rgba(98,166,14,0.25); color: #d7f1b0; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+  .points-card .bal { font-size: 44px; font-weight: 700; margin: 14px 0 2px; }
+  .points-card .bal small { font-size: 16px; font-weight: 500; opacity: 0.85; }
+  .points-card .next { font-size: 13px; opacity: 0.85; margin-top: 14px; display: flex; justify-content: space-between; }
+  .progress { height: 8px; background: rgba(255,255,255,0.18); border-radius: 999px; margin-top: 8px; overflow: hidden; }
+  .progress > span { display: block; height: 100%; width: 68%; background: var(--accent); border-radius: 999px; }
+
+  .earn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 6px; }
+  .earn { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 16px; }
+  .earn .ic { width: 40px; height: 40px; border-radius: 12px; background: #e8f4d8; color: var(--accent-dark); display: flex; align-items: center; justify-content: center; }
+  .earn h4 { margin: 12px 0 2px; font-size: 16px; }
+  .earn .rate { color: var(--muted); font-size: 13px; }
+
+  .redeem-row { display: flex; align-items: center; justify-content: space-between; background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 16px; margin-top: 6px; }
+  .redeem-row .l { display: flex; align-items: center; gap: 12px; }
+  .redeem-row .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--badge-bg); color: var(--primary); display: flex; align-items: center; justify-content: center; }
+  .redeem-row h4 { margin: 0; font-size: 16px; }
+  .redeem-row .sub { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar on-teal">
+    <span>9:41</span>
+    <span class="sb-right">
+      <i data-lucide="signal" class="i-18"></i>
+      <i data-lucide="wifi" class="i-18"></i>
+      <i data-lucide="battery-full" class="i-24"></i>
+    </span>
+  </div>
+
+  <div class="appbar">
+    <span class="nav-title" style="text-align:left;padding-left:4px;font-size:21px;font-weight:700">Rewards</span>
+  </div>
+
+  <div class="screen">
+    <div class="scroll">
+      <div class="points-card">
+        <span class="tier"><i data-lucide="award" class="i-16"></i> Sprout tier</span>
+        <div class="bal">1,240 <small>points</small></div>
+        <div class="next"><span>260 pts to Orchard</span><span>68%</span></div>
+        <div class="progress"><span></span></div>
+      </div>
+
+      <div class="section-head" style="margin-top:20px"><h2>Ways to earn</h2></div>
+      <div class="earn-grid">
+        <div class="earn"><div class="ic"><i data-lucide="plug-zap" class="i-22"></i></div><h4>EV charge</h4><div class="rate">10 pts / kWh</div></div>
+        <div class="earn"><div class="ic"><i data-lucide="coffee" class="i-22"></i></div><h4>Coffee</h4><div class="rate">50 pts / cup</div></div>
+        <div class="earn"><div class="ic"><i data-lucide="fuel" class="i-22"></i></div><h4>Fuel</h4><div class="rate">5 pts / litre</div></div>
+        <div class="earn"><div class="ic"><i data-lucide="utensils" class="i-22"></i></div><h4>Food</h4><div class="rate">2 pts / £1</div></div>
+      </div>
+
+      <div class="section-head" style="margin-top:20px"><h2>Redeem</h2></div>
+      <div class="redeem-row">
+        <div class="l">
+          <div class="ic"><i data-lucide="coffee" class="i-22"></i></div>
+          <div><h4>Free barista coffee</h4><div class="sub">500 points</div></div>
+        </div>
+        <span class="pill">Redeem</span>
+      </div>
+      <div class="redeem-row">
+        <div class="l">
+          <div class="ic"><i data-lucide="ticket" class="i-22"></i></div>
+          <div><h4>£5 off your next charge</h4><div class="sub">1,000 points</div></div>
+        </div>
+        <span class="pill">Redeem</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab"><i data-lucide="map" class="i-24"></i>Map</div>
+    <div class="tab"><i data-lucide="list" class="i-24"></i>List</div>
+    <div class="tab active"><i data-lucide="gift" class="i-24"></i>Rewards</div>
+    <div class="tab"><span class="avatar">FL</span>Profile</div>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

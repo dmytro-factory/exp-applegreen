@@ -1,9 +1,11 @@
-import { PwaShell } from "@/components/pwa/pwa-shell";
+import { AppShell } from "@/components/charging/app-shell";
+import { ChargingProvider } from "@/components/charging/context";
+import { CHARGERS, CHARGING_STATIONS } from "@/lib/charging/stations";
 
-type AppLayoutProps = {
-  children: React.ReactNode;
-};
-
-export default function AppLayout({ children }: AppLayoutProps) {
-  return <PwaShell>{children}</PwaShell>;
+export default function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <ChargingProvider stations={CHARGING_STATIONS} chargers={CHARGERS}>
+      <AppShell>{children}</AppShell>
+    </ChargingProvider>
+  );
 }
