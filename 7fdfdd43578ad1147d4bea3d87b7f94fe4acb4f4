@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "7fdfdd43578ad1147d4bea3d87b7f94fe4acb4f4",
+  "prompts": {
+    "13235e6af07a6e0c": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "ca85bb84-34d8-467c-9f8b-477967d869cc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "DY",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 174,
+      "overriden_lines": 0
+    }
+  }
+}
