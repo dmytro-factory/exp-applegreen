@@ -28,7 +28,7 @@ export default function MapPage() {
   const selected = selectedId ? getStation(selectedId) : null;
 
   return (
-    <div className="relative h-[calc(100dvh-128px)] w-full">
+    <div className="relative h-full w-full">
       <div className="absolute left-0 right-0 top-0 z-[500] px-3 pt-3">
         <div className="rounded-2xl bg-white/95 p-2 shadow-[0_6px_16px_rgba(20,32,60,0.12)] backdrop-blur">
           <FilterChips filters={filters} onChange={setFilters} />

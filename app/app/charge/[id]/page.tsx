@@ -80,7 +80,7 @@ export default function ChargePage() {
   const livePower = phase === "charging" ? Math.min(charger.maxKw, Math.round(charger.maxKw * (1 - soc / 140))) : charger.maxKw;
 
   return (
-    <div className="flex min-h-screen flex-col px-6 pb-10 pt-12 text-white" style={{ background: "linear-gradient(180deg, #006551 0%, #00402F 100%)" }}>
+    <div className="flex min-h-full flex-col px-6 pb-10 pt-12 text-white" style={{ background: "linear-gradient(180deg, #006551 0%, #00402F 100%)" }}>
       <header className="text-center">
         <p className="text-sm text-white/70">{station.name}</p>
         <h1 className="font-heading text-lg font-semibold">{formatConnector(charger.connectorType)} · {formatKw(charger.maxKw)}</h1>

@@ -31,7 +31,7 @@ export default function AuthPage() {
 
   return (
     <div
-      className="flex min-h-screen flex-col px-6 pb-10 pt-16"
+      className="flex min-h-full flex-col px-6 pb-10 pt-16"
       style={{ background: "linear-gradient(180deg, #006551 0%, #00402F 100%)" }}
     >
       <div className="flex flex-1 flex-col justify-center">
