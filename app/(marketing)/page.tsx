@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { brand } from "@/lib/brand";
-import { TryItNowSection } from "@/components/marketing/try-it-now-section";
 import { heroKpis } from "@/lib/marketing/page-map";
 import {
+  appStoreInfo,
+  appTodayThemes,
+  driverQuotes,
+  explainerIntro,
+  figmaShowcase,
   livePrototypeConfig,
-  problemComparisonColumns,
-  problemComparisonFeatures,
-  visionBodyCopy,
-  visionMockups,
-} from "@/lib/marketing/problem-vision-content";
+  loyaltyAdditions,
+  loyaltyShots,
+  rebuildSteps,
+  walletCardCta,
+} from "@/lib/marketing/explainer-content";
 
 const sectionClassName =
   "mx-auto w-full max-w-6xl scroll-mt-24 px-4 py-16 md:min-h-[65vh] md:py-20";
@@ -20,13 +24,13 @@ export default function MarketingPage() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-              Applegreen Rewards 2.0
+              Applegreen Fast Charge
             </p>
             <h1 className="mt-4 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-              Applegreen Rewards 2.0 for every road, every stop, one wallet.
+              Your charging app, reverse-engineered, back in your hands, and ready to reward.
             </h1>
             <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-              A loyalty-first experience for drivers and families across the Applegreen network.
+              {explainerIntro}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
@@ -37,11 +41,11 @@ export default function MarketingPage() {
                 {livePrototypeConfig.ctaLabel}
               </a>
               <a
-                href="#try-it-now"
+                href="#control"
                 className="inline-flex w-fit items-center justify-center rounded-xl border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{ outlineColor: brand.colors.primary }}
               >
-                Jump to try it now
+                See how it was rebuilt
               </a>
             </div>
           </div>
@@ -63,85 +67,140 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      <section id="problem" className={`${sectionClassName} border-t`}>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Problem</h2>
+      <section id="today" className={`${sectionClassName} border-t`}>
+        <h2 className="font-heading text-3xl font-semibold tracking-tight">The app today</h2>
         <p className="mt-3 max-w-3xl text-muted-foreground">
-          Applegreen customers are comparing us to Shell Go+ features they already expect at every stop.
+          The Fast Charge hardware delivers, but the app is holding the experience back. Drivers love the chargers and
+          tell a consistent story about where the journey gets stuck.
         </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {problemComparisonColumns.map((column) => (
-            <article key={column.key} className="rounded-2xl border bg-card p-6 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                {column.subtitle}
-              </p>
-              <h3 className="mt-2 text-xl font-semibold tracking-tight text-foreground">{column.label}</h3>
-              <ul className="mt-6 space-y-4">
-                {problemComparisonFeatures.map((feature) => {
-                  const isAvailable =
-                    column.key === "applegreen"
-                      ? feature.availability.applegreen
-                      : feature.availability.shellGoPlus;
 
-                  return (
-                    <li key={feature.title} className="flex items-start gap-3">
-                      <span
-                        aria-hidden
-                        className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold"
-                        style={{
-                          borderColor: isAvailable ? brand.colors.primary : "rgb(209 213 219)",
-                          backgroundColor: isAvailable ? brand.colors.primary : "transparent",
-                          color: isAvailable ? brand.colors.white : "rgb(107 114 128)",
-                        }}
-                      >
-                        {isAvailable ? "✓" : "–"}
-                      </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-foreground">{feature.title}</span>
-                        <span className="text-sm text-muted-foreground">{feature.description}</span>
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div
+            className="rounded-2xl border bg-card px-5 py-4 shadow-sm"
+            style={{ borderLeftColor: brand.colors.primary, borderLeftWidth: "4px" }}
+          >
+            <p className="text-3xl font-semibold leading-none text-foreground">
+              {appStoreInfo.rating.toFixed(1)}
+              <span className="text-amber-500"> ★</span>
+            </p>
+            <p className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              App Store, {appStoreInfo.ratingCount} ratings
+            </p>
+          </div>
+          <p className="max-w-md text-sm text-muted-foreground">
+            That gap between great chargers and a frustrating app is exactly the opportunity, and the easiest win to
+            put right.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {appTodayThemes.map((theme) => (
+            <article key={theme.title} className="rounded-2xl border bg-card p-6 shadow-sm">
+              <h3 className="text-lg font-semibold tracking-tight text-foreground">{theme.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{theme.description}</p>
             </article>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {driverQuotes.map((item) => (
+            <blockquote
+              key={item.quote}
+              className="rounded-2xl border bg-muted/40 p-5 text-sm text-foreground shadow-sm"
+            >
+              <p className="leading-6">&ldquo;{item.quote}&rdquo;</p>
+              <footer className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {item.source}
+              </footer>
+            </blockquote>
           ))}
         </div>
       </section>
 
-      <section id="vision" className={`${sectionClassName} border-t`}>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Vision</h2>
+      <section id="control" className={`${sectionClassName} border-t`}>
+        <h2 className="font-heading text-3xl font-semibold tracking-tight">In your control</h2>
         <p className="mt-3 max-w-3xl text-muted-foreground">
-          {visionBodyCopy}
+          We took the live app from the App Store, rebuilt every flow, and brought it into tools your team owns. The
+          full screen set now lives in an editable Figma file and a deployable codebase.
         </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {visionMockups.map((mockup) => (
-            <article key={mockup.src} className="mx-auto w-full max-w-[280px] rounded-[2rem] border bg-white p-2 shadow-lg">
-              <div className="overflow-hidden rounded-[1.65rem] border border-border bg-zinc-100">
-                <Image
-                  src={mockup.src}
-                  alt={mockup.alt}
-                  width={mockup.width}
-                  height={mockup.height}
-                  className="h-auto w-full"
-                />
-              </div>
-            </article>
+
+        <figure className="mt-10 overflow-hidden rounded-2xl border bg-card shadow-sm">
+          <Image
+            src={figmaShowcase.src}
+            alt={figmaShowcase.alt}
+            width={figmaShowcase.width}
+            height={figmaShowcase.height}
+            className="h-auto w-full"
+          />
+          <figcaption className="border-t px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            {figmaShowcase.fileLabel}
+          </figcaption>
+        </figure>
+
+        <ol className="mt-10 grid gap-4 md:grid-cols-5">
+          {rebuildSteps.map((item) => (
+            <li key={item.step} className="rounded-2xl border bg-card p-5 shadow-sm">
+              <span
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold text-white"
+                style={{ backgroundColor: brand.colors.primary }}
+              >
+                {item.step}
+              </span>
+              <h3 className="mt-3 text-sm font-semibold tracking-tight text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <TryItNowSection className={`${sectionClassName} border-t`} />
+      <section id="loyalty" className={`${sectionClassName} border-t`}>
+        <h2 className="font-heading text-3xl font-semibold tracking-tight">The loyalty layer</h2>
+        <p className="mt-3 max-w-3xl text-muted-foreground">
+          With the charging journey rebuilt, we added the piece that was missing: a reason for drivers to come back.
+          Points, tiers and rewards sit on top of flows that already work.
+        </p>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {loyaltyAdditions.map((item) => (
+              <article key={item.title} className="rounded-2xl border bg-card p-5 shadow-sm">
+                <h3 className="text-sm font-semibold tracking-tight text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+              </article>
+            ))}
+            <a
+              href={walletCardCta.href}
+              className="sm:col-span-2 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              style={{ backgroundColor: brand.colors.dark, outlineColor: brand.colors.primary }}
+            >
+              {walletCardCta.label}
+            </a>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            {loyaltyShots.map((shot) => (
+              <figure key={shot.src} className="text-center">
+                <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+                  <Image src={shot.src} alt={shot.alt} width={760} height={639} className="h-auto w-full" />
+                </div>
+                <figcaption className="mt-2 text-xs font-medium text-muted-foreground">{shot.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="live-prototype" className={`${sectionClassName} border-t`}>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Live prototype</h2>
+        <h2 className="font-heading text-3xl font-semibold tracking-tight">Live demo</h2>
         <p className="mt-3 max-w-3xl text-muted-foreground">
-          Open the real app shell below or launch it in a full tab to walk the reward journey end-to-end.
+          Open the rebuilt app below or launch it in a full tab to walk the charging and loyalty journey end-to-end,
+          running on real station data.
         </p>
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="space-y-4">
             <p className="text-sm leading-6 text-muted-foreground">
-              Inside the prototype you can preview the mobile-first loyalty surface and the core Applegreen rewards
-              interactions.
+              Find a charger, start a session, watch the points land, and redeem a reward, the same flows your drivers
+              would use day to day.
             </p>
             <a
               href={livePrototypeConfig.ctaHref}
@@ -155,14 +214,13 @@ export default function MarketingPage() {
             <div className="aspect-[1/2.1] overflow-hidden rounded-[1.7rem] border border-zinc-700 bg-white">
               <iframe
                 src={livePrototypeConfig.iframeSrc}
-                title="Applegreen Rewards live prototype"
+                title="Applegreen Fast Charge live demo"
                 className="h-full w-full"
               />
             </div>
           </div>
         </div>
       </section>
-
     </>
   );
 }

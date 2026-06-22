@@ -10,18 +10,18 @@ describe("marketing shell page map", () => {
     expect(marketingPageMap).toHaveLength(5);
     expect(marketingPageMap.map((section) => section.label)).toEqual([
       "Home",
-      "Problem",
-      "Vision",
-      "Try it now",
-      "Live prototype",
+      "The app today",
+      "In your control",
+      "Loyalty layer",
+      "Live demo",
     ]);
   });
 
   it("defines hero KPI values and labels", () => {
     expect(heroKpis).toEqual([
-      { value: 500, label: "stations" },
-      { value: 3, label: "countries" },
-      { value: 1, label: "wallet" },
+      { value: 13, label: "screens rebuilt" },
+      { value: 30, label: "charging sites" },
+      { value: 3, label: "loyalty tiers" },
     ]);
   });
 

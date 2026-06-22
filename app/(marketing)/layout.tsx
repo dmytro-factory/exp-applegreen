@@ -32,7 +32,7 @@ export default function MarketingLayout({
             <InPageNav sections={marketingPageMap} />
             <Link
               href="/mission"
-              className="rounded-full bg-[#659A27] px-3 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
+              className="rounded-full bg-[var(--brand-primary)] px-3 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-primary)]"
             >
               Built with mission
             </Link>
@@ -44,7 +44,7 @@ export default function MarketingLayout({
 
       <footer className="border-t bg-white">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Applegreen Rewards 2.0</p>
+          <p>© {new Date().getFullYear()} Applegreen Fast Charge</p>
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#hero"

@@ -13,8 +13,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Applegreen Rewards 2.0",
-  description: "Applegreen Rewards 2.0 mission scaffold",
+  title: "Applegreen Fast Charge",
+  description: "Applegreen Fast Charge, reverse-engineered and rebuilt with a loyalty layer",
 };
 
 export default function RootLayout({
